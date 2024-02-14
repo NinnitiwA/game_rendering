@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "resource.h"
 #include "event.h"
+#include "eventManager.h"
 #include "textEvent.h"
 #include "player.h"
 #include "camera.h"
@@ -22,7 +23,7 @@ void TextEvent::Update()
 	// イベントが準備中の場合画面に表示するイベントUIを切り替える
 	else if (m_EventState == EVENT_STATE_READY)
 	{
-		SwitchTextEvent();
+		EventManager::SwitchTextEvent();
 		m_EventState = EVENT_STATE_ON;
 	}
 
@@ -100,6 +101,15 @@ void TextEvent::Draw()
 	case TEXTEVENT_TUTORIAL_DODGE:
 		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetDashTutorialTexture());
 		break;
+	case TEXTEVENT_TLOB_TITLE:
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetTLOBTitleTexture());
+		break;
+	case TEXTEVENT_TCF_TITLE:
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetTCFTitleTexture());
+		break;
+	case TEXTEVENT_TSI_TITLE:
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetTSITitleTexture());
+		break;
 	case TEXTEVENT_END:
 		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetEndTexture());
 		break;
@@ -160,39 +170,50 @@ void TextEvent::SetTextEvent(TEXTEVENT eventNumber)
 {
 	switch (eventNumber)
 	{
+		// チュートリアル
 	case TEXTEVENT_TUTORIAL_JUMP:
 		m_TextEvent = TEXTEVENT_TUTORIAL_JUMP;
 		InitTextEvent(0.0f, 200.0f, 500.0f, 200.0f);
+
 		break;
 	case TEXTEVENT_TUTORIAL_PRESSATTACK:
 		m_TextEvent = TEXTEVENT_TUTORIAL_PRESSATTACK;
 		InitTextEvent(0.0f, 200.0f, 500.0f, 200.0f);
+
 		break;
 	case TEXTEVENT_TUTORIAL_CHARGEATTACK:
 		m_TextEvent = TEXTEVENT_TUTORIAL_CHARGEATTACK;
 		InitTextEvent(0.0f, 200.0f, 500.0f, 200.0f);
+
 		break;
 	case TEXTEVENT_TUTORIAL_DODGE:
 		m_TextEvent = TEXTEVENT_TUTORIAL_DODGE;
 		InitTextEvent(0.0f, 200.0f, 500.0f, 200.0f);
+
+		 // タイトルボード
+	case TEXTEVENT_TLOB_TITLE:
+		m_TextEvent = TEXTEVENT_TLOB_TITLE;
+		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+		break;
+
+	case TEXTEVENT_TCF_TITLE:
+		m_TextEvent = TEXTEVENT_TCF_TITLE;
+		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+		break;
+
+	case TEXTEVENT_TSI_TITLE:
+		m_TextEvent = TEXTEVENT_TSI_TITLE;
+		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 		break;
 	case TEXTEVENT_END:
 		m_TextEvent = TEXTEVENT_END;
 		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
 		break;
+
 	case TEXTEVENT_DEATH:
 		m_TextEvent = TEXTEVENT_DEATH;
 		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
 		break;
-	}
-}
-
-void TextEvent::SwitchTextEvent()
-{
-	Scene* scene = Manager::GetScene();
-	std::vector<TextEvent*> textEvents = scene->GetGameObjects<TextEvent>();
-	for (TextEvent* textEvent : textEvents)
-	{
-		if (textEvent->GetEventState() == EVENT_STATE_ON)textEvent->SetDestroy();
 	}
 }

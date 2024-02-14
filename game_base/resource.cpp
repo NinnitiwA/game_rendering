@@ -31,6 +31,9 @@ ID3D11ShaderResourceView* Resource::m_ChargeAttackTutorialTexture = NULL;
 ID3D11ShaderResourceView* Resource::m_EndTexture            = NULL;
 ID3D11ShaderResourceView* Resource::m_DeathTexture          = NULL;
 ID3D11ShaderResourceView* Resource::m_KenshouTexture        = NULL;
+ID3D11ShaderResourceView* Resource::m_TLOBTitleTexture      = NULL;
+ID3D11ShaderResourceView* Resource::m_TCFTitleTexture       = NULL;
+ID3D11ShaderResourceView* Resource::m_TSITitleTexture       = NULL;
 
 ID3D11InputLayout*	 Resource::m_VertexLayout          = NULL;
 ID3D11InputLayout*   Resource::m_GrassVertexLayout     = NULL;
@@ -126,6 +129,9 @@ void Resource::Init()
 	Resource::LoadTexture("asset/texture/titleBoard/end.png", &m_EndTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/death.png", &m_DeathTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/kenshou.png", &m_KenshouTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/TLOB_title.png", &m_TLOBTitleTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/TCF_title.png", &m_TCFTitleTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/TSI_title.png", &m_TSITitleTexture);
 
 	// シェーダ読み込み
 	Renderer::CreateVertexShader(&m_ColorVS, &m_VertexLayout, "shader\\colorVS.cso");
@@ -218,6 +224,9 @@ void Resource::Uninit()
 	m_EndTexture->Release();
 	m_DeathTexture->Release();
 	m_KenshouTexture->Release();
+	m_TLOBTitleTexture->Release();
+	m_TCFTitleTexture->Release();
+	m_TSITitleTexture->Release();
 
 	m_VertexLayout->Release();
 	m_GrassVertexLayout->Release();

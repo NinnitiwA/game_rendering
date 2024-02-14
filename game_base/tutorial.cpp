@@ -2,13 +2,10 @@
 #include "manager.h"
 #include "renderer.h"
 #include "dataStorage.h"
-#include "game.h"
+#include "tutorial.h"
 #include "title.h"
 #include "postProcess.h"
 
-#include "TheLandOfBeginningsArea.h"
-#include "TheCrystalFountainheadArea.h"
-#include "TheSkyIslandArea.h"
 #include "camera.h"
 #include "player.h"
 #include "field.h"
@@ -33,7 +30,7 @@
 #include "debugInstancingObject.h"
 
 
-void Game::Init()
+void Tutorial::Init()
 {
 	// 初期設定
 	m_SceneName = GAME_SCENE;
@@ -45,6 +42,7 @@ void Game::Init()
 	AddGameObject<Camera>(0);
 	m_Fade = AddGameObject<Fade>(3);
 	m_Fade->SetFadeOut();
+	EventManager::InitTutorialStage();
 
 	// ポストプロセス
 	m_PostProcess = new PostProcess();
@@ -54,7 +52,6 @@ void Game::Init()
 
 	// プレイヤー
 	Player* player = AddGameObject<Player>(1);
-	player->SetPosition(D3DXVECTOR3(0.0f, 10.0f, 0.0f));
 	AddGameObject<PlayerUI>(3);
 
 	// ライト
@@ -64,16 +61,39 @@ void Game::Init()
 
 	// 環境オブジェクト
 	AddGameObject<Sky>(1);
-	//TheLandOfBeginnings::InitEnvironment();
-	//TheCrystalFountainhead::InitEnvironment();
-	TheSkyIsland::InitEnvironment();
+
+	// 地面と草原
+	int groundListNum = DataStorage::GetTutorialDataStorage()->GroundGrassPos.size();
+	for (int i = 0; i < groundListNum; i++)
+	{
+		Ground::CreateGround(this, 1, 1, DataStorage::GetTutorialDataStorage()->GroundGrassPos[i]);
+		Grass::CreateGrass(this, 120, 1, 1, DataStorage::GetTutorialDataStorage()->GroundGrassPos[i], D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f), 0.0f);
+	}
+
+	// 岩
+	int rockListNum = DataStorage::GetTutorialDataStorage()->RockPos.size();
+	for (int i = 0; i < rockListNum; i++)
+	{
+		Rock* rock = AddGameObject<Rock>(1);
+		rock->SetPosition(DataStorage::GetTutorialDataStorage()->RockPos[i]);
+		if (i >= 2 && i < 11)
+		{
+			float randScale = Random(0, 100) / 50.0f - 0.5f;
+			rock->SetScale(D3DXVECTOR3(4.5f + randScale, 4.5f + randScale, 4.5f + randScale));
+		}
+	}
+
+	// 木
+	int treeListNum = DataStorage::GetTutorialDataStorage()->TreePos.size();
+	for (int i = 0; i < treeListNum; i++)
+	{
+		AddGameObject<Tree>(1)->SetPosition(DataStorage::GetTutorialDataStorage()->TreePos[i]);
+	}
+
+	// 水面
 	Water::CreateWave();
 	AddGameObject<Water>(1)->CreateWater(true);
 
-	// エネミー
-	//TheLandOfBeginnings::InitEnemy();
-	//TheCrystalFountainhead::InitEnemy();
-	TheSkyIsland::InitEnemy();
 
 	// デバッグ
 	for (int i = 0; i < 7; i++)
@@ -82,9 +102,10 @@ void Game::Init()
 	}
 	AddGameObject<Field>(4);
 	AddGameObject<AnimationObject>(5);
+	//AddGameObject<DebugInstancingObject>(1);
 }
 
-void Game::Update()
+void Tutorial::Update()
 {
 	Scene::Update();
 
@@ -102,7 +123,7 @@ void Game::Update()
 	}
 }
 
-void Game::Draw()
+void Tutorial::Draw()
 {
 	Camera* camera = GetGameObject<Camera>();
 
@@ -154,7 +175,7 @@ void Game::Draw()
 	// デバッグ--------------------------------------------------------------------
 	// カスケードシャドウ----------------------------------------------------------
 	Renderer::BeginDebugCascadeShadowView();
-	camera->DrawDebugCascadeShadow(); 
+	camera->DrawDebugCascadeShadow();
 
 	for (GameObject* gameObject : m_GameObject[1])
 	{
@@ -183,7 +204,7 @@ void Game::Draw()
 	// Z pre-pass-------------------------------------------------------------------
 	GUI::BeginProfiling();
 	Renderer::BeginZPrePass();
-	camera->Draw(); 
+	camera->Draw();
 
 	for (GameObject* gameObject : m_GameObject[1])
 	{

@@ -17,7 +17,7 @@
 #include "input.h"
 #include "dataStorage.h"
 
-D3DXVECTOR3 Player::m_RespwanPosition{};
+D3DXVECTOR3 Player::m_RespwanPosition = D3DXVECTOR3(0.0f, 10.0f, 0.0f);
 bool Player::m_CanControl = true;
 
 void Player::Init()

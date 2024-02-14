@@ -19,6 +19,7 @@ private:
 	D3DXVECTOR3 m_OldTarget{};      // 前フレームのカメラターゲット
 	D3DXVECTOR3 m_FixedDistance{};  // カメラ位置の固定距離
 	D3DXVECTOR3 m_EffectOffset{};   // カメラエフェクトのオフセット（振動）
+	D3DXVECTOR3 m_EventOffset{};    // カメライベントのオフセット
 	float       m_FovY;             // 視野角
 	D3DXCOLOR   m_Time;
 
@@ -56,6 +57,10 @@ public:
 		m_CameraOscillationMode = cameraOscillationMode;
 		m_CameraOscillationFrame = 0;
 	}
+	// イベントオフセットの取得
+	D3DXVECTOR3 GetEventOffset() { return m_EventOffset; }
+	// イベントオフセットの設定
+	void SetEventOffset(D3DXVECTOR3 eventOffset) { m_EventOffset = eventOffset; }
 	// タイトルシーンでのカメラ制御
 	void ActTitleSceneCamera();
 };

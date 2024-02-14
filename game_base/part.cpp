@@ -9,7 +9,7 @@
 #include "part.h"
 #include "field.h"
 #include "ground.h"
-#include "model.h"
+#include "invisibleBox.h"
 
 
 Audio* Part::m_HealSE = NULL;
@@ -60,7 +60,7 @@ void Part::Update()
 			groundHeight = position.y + scale.y * 2.0f;
 		}
 	}
-	// 地面
+	// デバッグ用地面
 	std::vector<Field*> fields = scene->GetGameObjects<Field>();
 	for (Field* field : fields)
 	{
@@ -73,6 +73,25 @@ void Part::Update()
 			m_Position.z < position.z + scale.z + radius)
 		{
 			groundHeight = position.y + scale.y * 2.0f;
+		}
+	}
+	// 透明な壁
+	std::vector<InvisibleBox*> invisibleBoxes = scene->GetGameObjects<InvisibleBox>();
+	for (InvisibleBox* invisibleBox : invisibleBoxes)
+	{
+		// 衝突判定が有効で距離が一定以下の場合判定実行
+		if (invisibleBox->GetInvisibleBoxParameter().Collision && invisibleBox->GetInvisibleBoxParameter().Length <= 20.0f)
+		{
+			D3DXVECTOR3 position = invisibleBox->GetPosition();
+			D3DXVECTOR3 scale = invisibleBox->GetScale();
+
+			if (position.x - scale.x - radius < m_Position.x &&
+				m_Position.x < position.x + scale.x + radius &&
+				position.z - scale.z - radius < m_Position.z &&
+				m_Position.z < position.z + scale.z + radius)
+			{
+				groundHeight = position.y + scale.y * 2.0f;
+			}
 		}
 	}
 	// 回転

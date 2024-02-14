@@ -7,6 +7,8 @@
 #include "ground.h"
 #include "model.h"
 
+GROUND_TYPE Ground::m_GroundType = GROUNDING_TYPE;
+
 void Ground::Init()
 {
 	m_Scale = D3DXVECTOR3(20.0f, 20.0f, 20.0f);
@@ -109,7 +111,8 @@ void Ground::CreateGround(Scene* Scene, int X, int Z, D3DXVECTOR3 Position)
 		for (int x = 0; x < X; x++)
 		{
 			Ground* ground = Scene->AddGameObject<Ground>(1);
-			ground->SetScale(D3DXVECTOR3(20.0f, 1.0f + Position.y / 2.0f, 20.0f));
+			if (m_GroundType == GROUNDING_TYPE) ground->SetScale(D3DXVECTOR3(20.0f, 1.0f + Position.y / 2.0f, 20.0f));
+			else if (m_GroundType == FLOATING_TYPE) ground->SetScale(D3DXVECTOR3(20.0f, 1.0f + 5.0f, 20.0f));
 			ground->SetPosition(D3DXVECTOR3(Position.x - 40.0f * (X - 1) / 2.0f + x * 40.0f, Position.y - ground->GetScale().y * 2.0f, Position.z - 40.0f * (Z - 1) / 2.0f + z * 40.0f));
 		}
 	}

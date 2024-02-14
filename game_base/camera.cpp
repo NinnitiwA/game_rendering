@@ -17,6 +17,8 @@ void Camera::Init()
 	m_Target = D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
 	m_OldTarget = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_FixedDistance = D3DXVECTOR3(0.0f, 16.0f, -14.0f);
+	m_EffectOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_EventOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_FovY = 60.0f * D3DX_PI / 180.0f;
 	m_Time = D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f);
 }
@@ -103,7 +105,7 @@ void Camera::Update()
 	// ターゲット座標を記録
 	m_OldTarget = m_Target;
 	// カメラの座標を反映
-	m_Position = m_Target + m_EffectOffset + m_FixedDistance; 
+	m_Position = m_Target + m_EffectOffset + m_FixedDistance + m_EventOffset;
 }
 
 

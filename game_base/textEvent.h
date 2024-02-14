@@ -9,6 +9,10 @@ enum TEXTEVENT
 	TEXTEVENT_TUTORIAL_CHARGEATTACK,
 	TEXTEVENT_TUTORIAL_DODGE,
 
+	TEXTEVENT_TLOB_TITLE,
+	TEXTEVENT_TCF_TITLE,
+	TEXTEVENT_TSI_TITLE,
+
 	TEXTEVENT_END,
 
 	TEXTEVENT_DEATH,
@@ -32,12 +36,11 @@ public:
 		}
 	}
 
-	void Init() override {};
-	void Uninit() override;
-	void Update() override;
-	void Draw() override;
+	void Init(){};
+	void Uninit();
+	void Update();
+	void Draw();
 
 	void InitTextEvent(float x, float y, float Width, float Height);
 	void SetTextEvent(TEXTEVENT eventNumber);
-	static void SwitchTextEvent();
 };

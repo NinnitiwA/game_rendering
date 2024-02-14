@@ -17,7 +17,7 @@ void Manager::Init()
 	Resource::Init();
 
 	// JSON‚©‚çƒf[ƒ^‚Ìæ“¾
-	//SaveData();
+	SaveData();
 	LoadData();
 
 	m_Scene = new Title;

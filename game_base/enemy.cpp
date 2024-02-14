@@ -9,6 +9,7 @@
 #include "field.h"
 #include "rock.h"
 #include "ground.h"
+#include "invisibleBox.h"
 #include "enemyStateIdle.h"
 #include "enemyStateDamaged.h"
 #include "particle.h"
@@ -51,7 +52,7 @@ void Enemy::Update()
 	// 移動
 	m_Position += m_Velocity;
 	// 障害物との衝突判定
-	float groundHeight = 0.0f;
+	float groundHeight = -20.0f;
 	// 地面
 	std::vector<Ground*> grounds = scene->GetGameObjects<Ground>();
 	for (Ground* ground : grounds)
@@ -59,10 +60,10 @@ void Enemy::Update()
 		D3DXVECTOR3 position = ground->GetPosition();
 		D3DXVECTOR3 scale = ground->GetScale();
 
-		if (position.x - scale.x - PLAYER_RADIUS < m_Position.x &&
-			m_Position.x < position.x + scale.x + PLAYER_RADIUS &&
-			position.z - scale.z - PLAYER_RADIUS < m_Position.z &&
-			m_Position.z < position.z + scale.z + PLAYER_RADIUS)
+		if (position.x - scale.x - ENEMY_RADIUS < m_Position.x &&
+			m_Position.x < position.x + scale.x + ENEMY_RADIUS &&
+			position.z - scale.z - ENEMY_RADIUS < m_Position.z &&
+			m_Position.z < position.z + scale.z + ENEMY_RADIUS)
 		{
 			if (m_Position.y < position.y + scale.y * 2.0f)
 			{
@@ -77,6 +78,12 @@ void Enemy::Update()
 				groundHeight = position.y + scale.y * 2.0f;
 			}
 		}
+	}
+	// デバッグ用地面
+	std::vector<Field*> fields = scene->GetGameObjects<Field>();
+	for (Field* field : fields)
+	{
+		groundHeight = 0.0f;
 	}
 	// 岩
 	std::vector<Rock*> rocks = scene->GetGameObjects<Rock>();
@@ -148,6 +155,33 @@ void Enemy::Update()
 		else
 		{
 			groundHeight = position.y + scale.y;
+		}
+	}
+	// 透明な壁
+	std::vector<InvisibleBox*> invisibleBoxes = scene->GetGameObjects<InvisibleBox>();
+	for (InvisibleBox* invisibleBox : invisibleBoxes)
+	{
+		// 衝突判定が有効で距離が一定以下の場合判定実行
+		if (invisibleBox->GetInvisibleBoxParameter().Collision && invisibleBox->GetInvisibleBoxParameter().Length <= 20.0f)
+		{
+			D3DXVECTOR3 position = invisibleBox->GetPosition();
+			D3DXVECTOR3 scale = invisibleBox->GetScale();
+
+			if (position.x - scale.x - ENEMY_RADIUS < m_Position.x &&
+				m_Position.x < position.x + scale.x + ENEMY_RADIUS &&
+				position.z - scale.z - ENEMY_RADIUS < m_Position.z &&
+				m_Position.z < position.z + scale.z + ENEMY_RADIUS)
+			{
+				if (m_Position.y < position.y + scale.y * 2.0f)
+				{
+					m_Position.x = oldPosition.x;
+					m_Position.z = oldPosition.z;
+				}
+				else if (groundHeight < position.y + scale.y * 2.0f)
+				{
+					groundHeight = position.y + scale.y * 2.0f;
+				}
+			}
 		}
 	}
 	// 接地

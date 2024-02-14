@@ -203,9 +203,9 @@ void LoadData()
 	}
 
 
-	// フィールドオブジェクト座標
+	// チュートリアルオブジェクト座標
 	{
-		std::string filePath = "data/field/FieldObjectPos.json"; // 座標
+		std::string filePath = "data/field/TutorialObjectPos.json"; // 座標
 
 		Vector3Data inputData;
 		std::ifstream ifs(filePath);
@@ -213,10 +213,10 @@ void LoadData()
 		i_archive(cereal::make_nvp("rock", inputData));
 
 		int arraySize = inputData.VectorArray.size();
-		for (int i = 0; i < arraySize; i++) DataStorage::GetFieldDataStorage()->RockPos.push_back(inputData.VectorArray[i]);
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTutorialDataStorage()->RockPos.push_back(inputData.VectorArray[i]);
 	}
 	{
-		std::string filePath = "data/field/FieldObjectPos.json"; // 座標
+		std::string filePath = "data/field/TutorialObjectPos.json"; // 座標
 
 		Vector3Data inputData;
 		std::ifstream ifs(filePath);
@@ -224,10 +224,10 @@ void LoadData()
 		i_archive(cereal::make_nvp("tree", inputData));
 
 		int arraySize = inputData.VectorArray.size();
-		for (int i = 0; i < arraySize; i++) DataStorage::GetFieldDataStorage()->TreePos.push_back(inputData.VectorArray[i]);
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTutorialDataStorage()->TreePos.push_back(inputData.VectorArray[i]);
 	}
 	{
-		std::string filePath = "data/field/FieldObjectPos.json"; // 座標
+		std::string filePath = "data/field/TutorialObjectPos.json"; // 座標
 
 		Vector3Data inputData;
 		std::ifstream ifs(filePath);
@@ -235,9 +235,209 @@ void LoadData()
 		i_archive(cereal::make_nvp("groundgrass", inputData));
 
 		int arraySize = inputData.VectorArray.size();
-		for (int i = 0; i < arraySize; i++) DataStorage::GetFieldDataStorage()->GroundGrassPos.push_back(inputData.VectorArray[i]);
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTutorialDataStorage()->GroundGrassPos.push_back(inputData.VectorArray[i]);
 	}
 
+
+
+	// はじまりの大地オブジェクト座標
+	{
+		std::string filePath = "data/field/TheLandOfBeginningsObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("rock", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheLandOfBeginningsDataStorage()->RockPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheLandOfBeginningsObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("tree", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheLandOfBeginningsDataStorage()->TreePos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheLandOfBeginningsObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("groundgrass", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheLandOfBeginningsDataStorage()->GroundGrassPos.push_back(inputData.VectorArray[i]);
+	}
+
+	// はじまりの大地エネミー座標
+	{
+		std::string filePath = "data/field/TheLandOfBeginningsEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemy", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheLandOfBeginningsDataStorage()->EnemyPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheLandOfBeginningsEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemyMagic", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheLandOfBeginningsDataStorage()->EnemyMagicPos.push_back(inputData.VectorArray[i]);
+	}
+
+	// 玲瓏水源オブジェクト座標
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("rock", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->RockPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("tree", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->TreePos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("groundgrass", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->GroundGrassPos.push_back(inputData.VectorArray[i]);
+	}
+
+	// 玲瓏水源エネミー座標
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemy", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->EnemyPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemyMagic", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->EnemyMagicPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheCrystalFountainheadEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemyStone", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheCrystalFountainheadDataStorage()->EnemyStonePos.push_back(inputData.VectorArray[i]);
+	}
+
+	// 空島オブジェクト座標
+	{
+		std::string filePath = "data/field/TheSkyIslandObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("rock", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->RockPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheSkyIslandObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("tree", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->TreePos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheSkyIslandObjectPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("groundgrass", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->GroundGrassPos.push_back(inputData.VectorArray[i]);
+	}
+
+	// 空島エネミー座標
+	{
+		std::string filePath = "data/field/TheSkyIslandEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemy", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->EnemyPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheSkyIslandEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemyMagic", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->EnemyMagicPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/field/TheSkyIslandEnemyPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("enemyStone", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetTheSkyIslandDataStorage()->EnemyStonePos.push_back(inputData.VectorArray[i]);
+	}
 
 
 //#ifdef _MSC_VER
@@ -565,7 +765,7 @@ void SaveData()
 			outputGroundGrassData.VectorArray.push_back(vec3);
 		}
 
-		std::string filePath = "data/field/FieldObjectPos.json";
+		std::string filePath = "data/field/TutorialObjectPos.json";
 
 		std::ofstream ofs(filePath);
 		{
@@ -573,6 +773,219 @@ void SaveData()
 			o_archive(cereal::make_nvp("rock", outputRockData));
 			o_archive(cereal::make_nvp("tree", outputTreeData));
 			o_archive(cereal::make_nvp("groundgrass", outputGroundGrassData));
+		}
+	}
+
+	// はじまりの大地オブジェクト座標
+	{
+		Vector3Data outputRockData;
+		outputRockData.name = "RockPosition"; // 座標
+		int arraySize = sizeof(TLOB_RockPositionList) / sizeof(TLOB_RockPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TLOB_RockPositionList[i];
+			outputRockData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputTreeData;
+		outputTreeData.name = "TreePosition"; // 座標
+		arraySize = sizeof(TLOB_TreePositionList) / sizeof(TLOB_TreePositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TLOB_TreePositionList[i];
+			outputTreeData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputGroundGrassData;
+		outputGroundGrassData.name = "GroundGrassPosition"; // 座標
+		arraySize = sizeof(TLOB_GroundGrassPositionList) / sizeof(TLOB_GroundGrassPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TLOB_GroundGrassPositionList[i];
+			outputGroundGrassData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheLandOfBeginningsObjectPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("rock", outputRockData));
+			o_archive(cereal::make_nvp("tree", outputTreeData));
+			o_archive(cereal::make_nvp("groundgrass", outputGroundGrassData));
+		}
+	}
+
+	// はじまりの大地エネミー座標
+	{
+		Vector3Data outputEnemyData;
+		outputEnemyData.name = "EnemyPosition"; // 座標
+		int arraySize = sizeof(TLOB_EnemyPositionList) / sizeof(TLOB_EnemyPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TLOB_EnemyPositionList[i];
+			outputEnemyData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputEnemyMagicData;
+		outputEnemyMagicData.name = "EnemyMagicPosition"; // 座標
+		arraySize = sizeof(TLOB_EnemyMagicPositionList) / sizeof(TLOB_EnemyMagicPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TLOB_EnemyMagicPositionList[i];
+			outputEnemyMagicData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheLandOfBeginningsEnemyPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("enemy", outputEnemyData));
+			o_archive(cereal::make_nvp("enemyMagic", outputEnemyMagicData));
+		}
+	}
+
+	// 玲瓏水源オブジェクト座標
+	{
+		Vector3Data outputRockData;
+		outputRockData.name = "RockPosition"; // 座標
+		int arraySize = sizeof(TCF_RockPositionList) / sizeof(TCF_RockPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_RockPositionList[i];
+			outputRockData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputTreeData;
+		outputTreeData.name = "TreePosition"; // 座標
+		arraySize = sizeof(TCF_TreePositionList) / sizeof(TCF_TreePositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_TreePositionList[i];
+			outputTreeData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputGroundGrassData;
+		outputGroundGrassData.name = "GroundGrassPosition"; // 座標
+		arraySize = sizeof(TCF_GroundGrassPositionList) / sizeof(TCF_GroundGrassPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_GroundGrassPositionList[i];
+			outputGroundGrassData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheCrystalFountainheadObjectPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("rock", outputRockData));
+			o_archive(cereal::make_nvp("tree", outputTreeData));
+			o_archive(cereal::make_nvp("groundgrass", outputGroundGrassData));
+		}
+	}
+
+	// 玲瓏水源エネミー座標
+	{
+		Vector3Data outputEnemyData;
+		outputEnemyData.name = "EnemyPosition"; // 座標
+		int arraySize = sizeof(TCF_EnemyPositionList) / sizeof(TCF_EnemyPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_EnemyPositionList[i];
+			outputEnemyData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputEnemyMagicData;
+		outputEnemyMagicData.name = "EnemyMagicPosition"; // 座標
+		arraySize = sizeof(TCF_EnemyMagicPositionList) / sizeof(TCF_EnemyMagicPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_EnemyMagicPositionList[i];
+			outputEnemyMagicData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputEnemyStoneData;
+		outputEnemyStoneData.name = "EnemyStonePosition"; // 座標
+		arraySize = sizeof(TCF_EnemyStonePositionList) / sizeof(TCF_EnemyStonePositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TCF_EnemyStonePositionList[i];
+			outputEnemyStoneData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheCrystalFountainheadEnemyPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("enemy", outputEnemyData));
+			o_archive(cereal::make_nvp("enemyMagic", outputEnemyMagicData));
+			o_archive(cereal::make_nvp("enemyStone", outputEnemyStoneData));
+		}
+	}
+
+	// 空島オブジェクト座標
+	{
+		Vector3Data outputRockData;
+		outputRockData.name = "RockPosition"; // 座標
+		int arraySize = sizeof(TSI_RockPositionList) / sizeof(TSI_RockPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_RockPositionList[i];
+			outputRockData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputTreeData;
+		outputTreeData.name = "TreePosition"; // 座標
+		arraySize = sizeof(TSI_TreePositionList) / sizeof(TSI_TreePositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_TreePositionList[i];
+			outputTreeData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputGroundGrassData;
+		outputGroundGrassData.name = "GroundGrassPosition"; // 座標
+		arraySize = sizeof(TSI_GroundGrassPositionList) / sizeof(TSI_GroundGrassPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_GroundGrassPositionList[i];
+			outputGroundGrassData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheSkyIslandObjectPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("rock", outputRockData));
+			o_archive(cereal::make_nvp("tree", outputTreeData));
+			o_archive(cereal::make_nvp("groundgrass", outputGroundGrassData));
+		}
+	}
+
+	// 空島エネミー座標
+	{
+		Vector3Data outputEnemyData;
+		outputEnemyData.name = "EnemyPosition"; // 座標
+		int arraySize = sizeof(TSI_EnemyPositionList) / sizeof(TSI_EnemyPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_EnemyPositionList[i];
+			outputEnemyData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputEnemyMagicData;
+		outputEnemyMagicData.name = "EnemyMagicPosition"; // 座標
+		arraySize = sizeof(TSI_EnemyMagicPositionList) / sizeof(TSI_EnemyMagicPositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_EnemyMagicPositionList[i];
+			outputEnemyMagicData.VectorArray.push_back(vec3);
+		}
+
+		Vector3Data outputEnemyStoneData;
+		outputEnemyStoneData.name = "EnemyStonePosition"; // 座標
+		arraySize = sizeof(TSI_EnemyStonePositionList) / sizeof(TSI_EnemyStonePositionList[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = TSI_EnemyStonePositionList[i];
+			outputEnemyStoneData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/field/TheSkyIslandEnemyPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("enemy", outputEnemyData));
+			o_archive(cereal::make_nvp("enemyMagic", outputEnemyMagicData));
+			o_archive(cereal::make_nvp("enemyStone", outputEnemyStoneData));
 		}
 	}
 

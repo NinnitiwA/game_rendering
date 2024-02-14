@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "game.h"
 #include "title.h"
+#include "tutorial.h"
 #include "workspace.h"
 #include "input.h"
 #include "postProcess.h"
@@ -63,7 +64,7 @@ void Title::Update()
 	if (Input::GetKeyPress('1'))
 	{
 		m_NextScene = true;
-		m_Fade->SetFadeTexture(false);
+		m_Fade->SetFadeTexture(true);
 		m_Fade->SetFadeIn();
 		GUI::sceneEndFlag = false;
 		//m_SE->Play();
