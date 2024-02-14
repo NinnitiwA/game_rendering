@@ -69,7 +69,7 @@ public:
 	// ƒ_ƒ[ƒWˆ—
 	virtual void SetDamage(float);
 	// €–S”»’èˆ—
-	void JudgeDeath();
+	virtual void JudgeDeath();
 
 	void Init() override;
 	void Uninit() override;
@@ -78,4 +78,23 @@ public:
 	void DrawShadowMapping() override;
 	void DrawZPrePass() override;
 	void DrawReflection() override;
+};
+
+enum SNAKE_STATE
+{
+	IDLE_STATE,
+	WALK_STATE,
+	READY_STATE,
+	ATTACK_STATE,
+	DAMAGED_STATE,
+};
+
+struct SNAKEPARAMETER
+{
+	SNAKE_STATE State;
+
+	int DamageFrame;
+	int AttackFrame;
+	int WalkFrame;
+	int ReadyFrame;
 };

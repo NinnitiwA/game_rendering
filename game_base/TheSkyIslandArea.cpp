@@ -12,6 +12,8 @@
 #include "enemy.h"
 #include "enemyMagic.h"
 #include "enemyStone.h"
+#include "snakeHead.h"
+#include "snakeBody.h"
 #include "rock.h"
 #include "tree.h"
 #include "water.h"
@@ -79,4 +81,9 @@ void TheSkyIsland::InitEnemy()
 	{
 		scene->AddGameObject<EnemyStone>(1)->SetPosition(DataStorage::GetTheSkyIslandDataStorage()->EnemyStonePos[i] + m_AreaPosition);
 	}
+
+	// ボスエネミー
+	SnakeHead* snake = scene->AddGameObject<SnakeHead>(1);
+	snake->SetPosition(D3DXVECTOR3(-135.0f, 26.0f, 170.0f) + m_AreaPosition);
+	snake->CreateSnakeBody();
 }

@@ -30,6 +30,85 @@ struct Vector3Data {
 void LoadData();
 void SaveData();
 
+// タックル攻撃中のアニメーション
+static D3DXVECTOR3 g_SnakeAttackAnimPos[34] =
+{
+	D3DXVECTOR3(0.0f, 0.0f, -0.0f), // 攻撃前
+	D3DXVECTOR3(0.0f, 0.0f, -0.05f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.0f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.1f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.0f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.15f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.0f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.2f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.0f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.25f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.3f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.35f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.35f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.35f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.35f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.35f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.35f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.35f),
+	D3DXVECTOR3(0.0f, 0.0f,  0.35f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.35f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.1f),
+
+	D3DXVECTOR3(0.0f, 0.0f, -1.3f), // 攻撃後
+	D3DXVECTOR3(0.0f, 0.0f, -1.3f),
+	D3DXVECTOR3(0.0f, 0.0f, -1.3f),
+	D3DXVECTOR3(0.0f, 0.0f, -1.2f),
+	D3DXVECTOR3(0.0f, 0.0f, -1.2f),
+	D3DXVECTOR3(0.0f, 0.0f, -1.0f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.8f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.7f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.6f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.5f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.25f),
+	D3DXVECTOR3(0.0f, 0.0f, -0.1f),
+	D3DXVECTOR3(0.0f, 0.0f, 0.05f),
+};
+static D3DXVECTOR3 g_SnakeAttackAnimScale[34] =
+{
+	D3DXVECTOR3(1.05f, 1.05f, 0.9f), // 攻撃前
+	D3DXVECTOR3(1.05f, 1.05f, 0.85f),
+	D3DXVECTOR3(1.05f, 1.05f, 0.85f),
+	D3DXVECTOR3(1.1f,  1.1f, 0.8f),
+	D3DXVECTOR3(1.1f,  1.1f, 0.8f),
+	D3DXVECTOR3(1.15f, 1.15f, 0.75f),
+	D3DXVECTOR3(1.15f, 1.15f, 0.7f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.15f,  1.15f, 0.7f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.15f,  1.15f, 0.7f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.15f,  1.15f, 0.7f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+	D3DXVECTOR3(1.15f,  1.15f, 0.7f),
+	D3DXVECTOR3(1.2f,  1.2f, 0.65f),
+
+	D3DXVECTOR3(0.7f,  0.7f, 2.0f), // 攻撃後
+	D3DXVECTOR3(0.7f,  0.7f, 2.0f),
+	D3DXVECTOR3(0.75f, 0.75f,2.0f),
+	D3DXVECTOR3(0.8f,  0.8f, 2.0f),
+	D3DXVECTOR3(0.85f, 0.85f,2.0f),
+	D3DXVECTOR3(0.9f,  0.9f, 2.0f),
+	D3DXVECTOR3(0.95f, 0.95f,2.0f),
+	D3DXVECTOR3(0.95f, 0.95f,1.8f),
+	D3DXVECTOR3(0.95f, 0.95f,1.5f),
+	D3DXVECTOR3(0.95f, 0.95f,1.3f),
+	D3DXVECTOR3(0.95f, 0.95f,1.15f),
+	D3DXVECTOR3(0.96f, 0.96f,1.1f),
+	D3DXVECTOR3(0.96f, 0.96f,1.05f),
+};
+
+
 // エリアに配置する岩の座標リスト
 static D3DXVECTOR3 TSI_RockPositionList[] =
 {

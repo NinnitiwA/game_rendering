@@ -20,6 +20,8 @@ private:
 	static Model* m_RockModel;
 	static Model* m_TreeModel[3];
 	static Model* m_GroundModel;
+	static Model* m_SnakeHeadModel;
+	static Model* m_SnakeBodyModel;
 
 	// テクスチャ
 	static ID3D11ShaderResourceView* m_FieldTexture;
@@ -105,6 +107,8 @@ public:
 	static Model* GetRockModel() { return m_RockModel; }
 	static Model* GetTreeModel(int i) { return m_TreeModel[i]; }
 	static Model* GetGroundModel() { return m_GroundModel; }
+	static Model* GetSnakeHeadModel() { return m_SnakeHeadModel; }
+	static Model* GetSnakeBodyModel() { return m_SnakeBodyModel; }
 
 	static ID3D11ShaderResourceView* const* GetFieldTexture() { return &m_FieldTexture; }
 	static ID3D11ShaderResourceView* const* GetEnvironmentMapTexture() { return &m_EnvironmentMapTexture; }

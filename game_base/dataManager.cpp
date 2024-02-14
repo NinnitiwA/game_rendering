@@ -202,6 +202,30 @@ void LoadData()
 		for (int i = 0; i < arraySize; i++) DataStorage::GetEnemyFieldDataStorage()->MagicAttackAnimScale.push_back(inputData.VectorArray[i]);
 	}
 
+	// スネーク攻撃アニメーション
+	{
+		std::string filePath = "data/snake/SnakeAttackAnimPos.json"; // 座標
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("root", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetEnemyFieldDataStorage()->SnakeAttackAnimPos.push_back(inputData.VectorArray[i]);
+	}
+	{
+		std::string filePath = "data/snake/SnakeAttackAnimScale.json"; // スケール
+
+		Vector3Data inputData;
+		std::ifstream ifs(filePath);
+		cereal::JSONInputArchive i_archive(ifs);
+		i_archive(cereal::make_nvp("root", inputData));
+
+		int arraySize = inputData.VectorArray.size();
+		for (int i = 0; i < arraySize; i++) DataStorage::GetEnemyFieldDataStorage()->SnakeAttackAnimScale.push_back(inputData.VectorArray[i]);
+	}
+
 
 	// チュートリアルオブジェクト座標
 	{
@@ -731,6 +755,42 @@ void SaveData()
 		}
 
 		std::string filePath = "data/enemyField/EnemyFieldMagicAttackAnimScale.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("root", outputData));
+		}
+	}
+
+	// スネーク攻撃アニメーション
+	{
+		Vector3Data outputData;
+		outputData.name = "SnakeAttackAnimPos"; // 座標
+		int arraySize = sizeof(g_SnakeAttackAnimPos) / sizeof(g_SnakeAttackAnimPos[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = g_SnakeAttackAnimPos[i];
+			outputData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/snake/SnakeAttackAnimPos.json";
+
+		std::ofstream ofs(filePath);
+		{
+			cereal::JSONOutputArchive o_archive(ofs);
+			o_archive(cereal::make_nvp("root", outputData));
+		}
+	}
+	{
+		Vector3Data outputData;
+		outputData.name = "SnakeAttackAnimScale"; // スケール
+		int arraySize = sizeof(g_SnakeAttackAnimScale) / sizeof(g_SnakeAttackAnimScale[0]);
+		for (int i = 0; i < arraySize; i++) {
+			D3DXVECTOR3 vec3 = g_SnakeAttackAnimScale[i];
+			outputData.VectorArray.push_back(vec3);
+		}
+
+		std::string filePath = "data/snake/SnakeAttackAnimScale.json";
 
 		std::ofstream ofs(filePath);
 		{

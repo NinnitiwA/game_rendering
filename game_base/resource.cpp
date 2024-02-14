@@ -17,6 +17,8 @@ Model* Resource::m_BulletModel = NULL;
 Model* Resource::m_RockModel = NULL;
 Model* Resource::m_TreeModel[3] = { NULL };
 Model* Resource::m_GroundModel = NULL;
+Model* Resource::m_SnakeHeadModel = NULL;
+Model* Resource::m_SnakeBodyModel = NULL;
 
 ID3D11ShaderResourceView* Resource::m_FieldTexture          = NULL;
 ID3D11ShaderResourceView* Resource::m_EnvironmentMapTexture = NULL;
@@ -114,6 +116,10 @@ void Resource::Init()
 	m_TreeModel[2]->Load("asset\\model\\environment\\tree\\tree03.obj", false);
 	m_GroundModel = new Model();
 	m_GroundModel->Load("asset\\model\\environment\\ground\\field.obj");
+	m_SnakeHeadModel = new Model();
+	m_SnakeHeadModel->Load("asset\\model\\enemy\\snakeHead\\snake_head.obj");
+	m_SnakeBodyModel = new Model();
+	m_SnakeBodyModel->Load("asset\\model\\enemy\\snakeBody\\snake_body.obj");
 
 	// テクスチャ読み込み
 	Resource::LoadTexture("asset/texture/field004.jpg", &m_FieldTexture);
@@ -210,6 +216,10 @@ void Resource::Uninit()
 	delete m_TreeModel[2];
 	m_GroundModel->Unload();
 	delete m_GroundModel;
+	m_SnakeHeadModel->Unload();
+	delete m_SnakeHeadModel;
+	m_SnakeBodyModel->Unload();
+	delete m_SnakeBodyModel;
 
 	m_FieldTexture->Release();
 	m_EnvironmentMapTexture->Release();

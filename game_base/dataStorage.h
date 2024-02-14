@@ -28,6 +28,9 @@ struct EnemyFieldDataStorage
 
 	std::vector<D3DXVECTOR3> MagicAttackAnimPos;
 	std::vector<D3DXVECTOR3> MagicAttackAnimScale;
+
+	std::vector<D3DXVECTOR3> SnakeAttackAnimPos;
+	std::vector<D3DXVECTOR3> SnakeAttackAnimScale;
 };
 
 struct AreaDataStorage
