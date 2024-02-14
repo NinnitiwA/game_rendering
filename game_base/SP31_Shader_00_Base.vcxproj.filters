@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{976706a8-5373-42ee-a44d-e61fc0300995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{59763a5d-9724-43fd-b0b6-fc901471ba3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject">
+      <UniqueIdentifier>{57d5c960-df45-468a-a3d0-130e9c9f28a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject">
+      <UniqueIdentifier>{f090ca94-722b-4717-a17a-0285456dcb3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\system">
+      <UniqueIdentifier>{c5dc77c1-d8ee-4cb8-93ac-aeeb71a9d09e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\system">
+      <UniqueIdentifier>{26efe8f6-0846-4b35-8805-99bb3556de77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\light">
+      <UniqueIdentifier>{d73a87f3-7f89-4f64-bbd4-5790c0910409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{2a53e855-1825-4fda-9bcc-af8568df51a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{4a78d3ce-2831-4aa1-8bc0-a35f93e293d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\resource">
+      <UniqueIdentifier>{bf23e570-eebb-4e61-bb5c-b639edbdb694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\resource">
+      <UniqueIdentifier>{e348974d-c6ec-471f-85e3-189cc0bd0677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\enemy">
+      <UniqueIdentifier>{57ad0021-ce88-4a82-b297-18e285a3fb80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\enemy">
+      <UniqueIdentifier>{244ee286-134f-4ba5-9adb-5954f2a6820c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\environment">
+      <UniqueIdentifier>{330d5b75-802e-453f-88c4-4a52865a7413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\environment">
+      <UniqueIdentifier>{a2be01e2-5e3f-4422-8645-9f025dac9b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\debug">
+      <UniqueIdentifier>{50dc2ba4-d07a-4607-b99e-ded86363b4e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\debug">
+      <UniqueIdentifier>{fcd096e2-9b02-47f1-8059-d7659ea166a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\light">
+      <UniqueIdentifier>{c217dbbd-9493-4617-9644-b764c4a68e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\effect">
+      <UniqueIdentifier>{3eddea38-31f0-469a-85c6-f86f40868ced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\effect">
+      <UniqueIdentifier>{06d7cc25-96cb-45b1-a851-f04eed70bca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\UI">
+      <UniqueIdentifier>{fe2c9c79-1371-4473-8e04-fa2b5560b5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\UI">
+      <UniqueIdentifier>{ae44bdb5-abff-4604-9e99-65bdd176a7b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\enemy\state">
+      <UniqueIdentifier>{f6871dd6-deb6-4f3e-9477-21ce5e206f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\enemy\state">
+      <UniqueIdentifier>{fe911882-912b-4569-9f30-9e787701112c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\postprocess">
+      <UniqueIdentifier>{d0ae6a4c-728c-48a4-9679-4ce71090891c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\deferredGBuffer">
+      <UniqueIdentifier>{4a0fb7fd-569b-4f59-9c0f-af44a622d482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\lighting">
+      <UniqueIdentifier>{81475c3e-ad10-4789-8697-5e5dd518dceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\grass">
+      <UniqueIdentifier>{7c65ff55-17ab-41ec-a0c4-4de725ed2a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\reflection">
+      <UniqueIdentifier>{4c0e51e2-5f39-4864-8587-b8ce8596e592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameObject\event">
+      <UniqueIdentifier>{c7a3694c-d229-46fc-9fce-af86eaa031bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameObject\event">
+      <UniqueIdentifier>{0150d4e6-84cb-42cb-82da-6998e1a83d79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="postprocess.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="gui.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>ソース ファイル\gameObject\light</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>ソース ファイル\gameObject\light</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="resource.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateAttack.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateDamaged.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateIdle.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateReady.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateWalk.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="dataManager.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="dataStorage.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="directionalLight.cpp">
+      <Filter>ソース ファイル\gameObject\light</Filter>
+    </ClCompile>
+    <ClCompile Include="skydome.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="debugObject.cpp">
+      <Filter>ソース ファイル\gameObject\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="animationObject.cpp">
+      <Filter>ソース ファイル\gameObject\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="instancingObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="debugInstancingObject.cpp">
+      <Filter>ソース ファイル\gameObject\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>ソース ファイル\gameObject\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>ソース ファイル\gameObject\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="part.cpp">
+      <Filter>ソース ファイル\gameObject\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>ソース ファイル\gameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="fade.cpp">
+      <Filter>ソース ファイル\gameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>ソース ファイル\gameObject\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyMagic.cpp">
+      <Filter>ソース ファイル\gameObject\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateStone.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStateStone.cpp">
+      <Filter>ソース ファイル\gameObject\enemy\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStone.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyStone.cpp">
+      <Filter>ソース ファイル\gameObject\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="grass.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="rock.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="water.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="ground.cpp">
+      <Filter>ソース ファイル\gameObject\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="workspace.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="invisibleBox.cpp">
+      <Filter>ソース ファイル\gameObject\event</Filter>
+    </ClCompile>
+    <ClCompile Include="textEvent.h">
+      <Filter>ヘッダー ファイル\gameObject\event</Filter>
+    </ClCompile>
+    <ClCompile Include="textEvent.cpp">
+      <Filter>ソース ファイル\gameObject\event</Filter>
+    </ClCompile>
+    <ClCompile Include="playerUI.cpp">
+      <Filter>ソース ファイル\gameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="pbrObject.cpp">
+      <Filter>ソース ファイル\gameObject\debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="polygon.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_dx11.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_win32.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="postprocess.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="stl.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="gui.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>ヘッダー ファイル\gameObject\light</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>ヘッダー ファイル\gameObject\light</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>ヘッダー ファイル\gameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>ヘッダー ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyStateAttack.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyStateDamaged.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyStateIdle.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyStateReady.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyState.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyStateWalk.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy\state</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="dataManager.h">
+      <Filter>ヘッダー ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="dataStorage.h">
+      <Filter>ヘッダー ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="directionalLight.h">
+      <Filter>ヘッダー ファイル\gameObject\light</Filter>
+    </ClInclude>
+    <ClInclude Include="skydome.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="debugObject.h">
+      <Filter>ヘッダー ファイル\gameObject\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="animationObject.h">
+      <Filter>ヘッダー ファイル\gameObject\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="instancingObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="debugInstancingObject.h">
+      <Filter>ヘッダー ファイル\gameObject\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>ヘッダー ファイル\gameObject\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="part.h">
+      <Filter>ヘッダー ファイル\gameObject\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="particle.h">
+      <Filter>ヘッダー ファイル\gameObject\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>ヘッダー ファイル\gameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="fade.h">
+      <Filter>ヘッダー ファイル\gameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyMagic.h">
+      <Filter>ヘッダー ファイル\gameObject\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="grass.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="rock.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="tree.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="water.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="ground.h">
+      <Filter>ヘッダー ファイル\gameObject\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="workspace.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="invisibleBox.h">
+      <Filter>ヘッダー ファイル\gameObject\event</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>ヘッダー ファイル\gameObject\event</Filter>
+    </ClInclude>
+    <ClInclude Include="playerUI.h">
+      <Filter>ヘッダー ファイル\gameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="pbrObject.h">
+      <Filter>ヘッダー ファイル\gameObject\debug</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader\unlitTextureVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\common.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\unlitTexturePS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\colorVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\colorPS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\shadowDebugVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\shadowDebugPS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\InstancedFrustumCullingCS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\InstancedVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\InstancedDeferredGBufferVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\antiAliasingFXAAPS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\antiAliasingFXAAVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\bloomPS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\bloomVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\fogPS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\fogVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\gaussianBlurPS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\gaussianBlurVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\luminancePS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\luminanceVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\deferredGBufferColoredObjectPS.hlsl">
+      <Filter>shader\deferredGBuffer</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\deferredGBufferPlayerPS.hlsl">
+      <Filter>shader\deferredGBuffer</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\deferredGBufferPS.hlsl">
+      <Filter>shader\deferredGBuffer</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\deferredGBufferVS.hlsl">
+      <Filter>shader\deferredGBuffer</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\depthOfFieldVS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\depthOfFieldPS.hlsl">
+      <Filter>shader\postprocess</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\directionalLightingPS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\directionalLightingVS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\localLightingPS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\localLightingVS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\pixelLightingPS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\pixelLightingVS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\shadowMappingPS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\shadowMappingVS.hlsl">
+      <Filter>shader\lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\grassGS.hlsl">
+      <Filter>shader\grass</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\grassPS.hlsl">
+      <Filter>shader\grass</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\grassVS.hlsl">
+      <Filter>shader\grass</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\reflectionPS.hlsl">
+      <Filter>shader\reflection</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\reflectionVS.hlsl">
+      <Filter>shader\reflection</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\gaugeVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\gaugePS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
