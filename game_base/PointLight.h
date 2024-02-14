@@ -16,9 +16,10 @@ private:
 
 
 public:
-	void Init();
-	void Uninit();
-	void Update();
-	void Draw();
+	void Init() override;
+	void Uninit() override;
+	void Update() override;
+	void Draw() override;
+	void DrawZPrePass() override;
 	void DrawLighting();
 };

@@ -30,6 +30,7 @@ ID3D11ShaderResourceView* Resource::m_PressAttackTutorialTexture  = NULL;
 ID3D11ShaderResourceView* Resource::m_ChargeAttackTutorialTexture = NULL;
 ID3D11ShaderResourceView* Resource::m_EndTexture            = NULL;
 ID3D11ShaderResourceView* Resource::m_DeathTexture          = NULL;
+ID3D11ShaderResourceView* Resource::m_KenshouTexture        = NULL;
 
 ID3D11InputLayout*	 Resource::m_VertexLayout          = NULL;
 ID3D11InputLayout*   Resource::m_GrassVertexLayout     = NULL;
@@ -124,6 +125,7 @@ void Resource::Init()
 	Resource::LoadTexture("asset/texture/tutorial/tutorialChargeAttack.png", &m_ChargeAttackTutorialTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/end.png", &m_EndTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/death.png", &m_DeathTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/kenshou.png", &m_KenshouTexture);
 
 	// シェーダ読み込み
 	Renderer::CreateVertexShader(&m_ColorVS, &m_VertexLayout, "shader\\colorVS.cso");
@@ -215,6 +217,7 @@ void Resource::Uninit()
 	m_PressAttackTutorialTexture->Release();
 	m_EndTexture->Release();
 	m_DeathTexture->Release();
+	m_KenshouTexture->Release();
 
 	m_VertexLayout->Release();
 	m_GrassVertexLayout->Release();

@@ -33,6 +33,8 @@ void WorkSpace::Init()
 	m_SceneName = WORFSPACE_SCENE;
 	GUI::drawGuiFlag = true;
 	GUI::playerControllFlag = true;
+	GUI::drawLocalLightFlag = false;
+	GUI::luminanceValue = 0.975f;
 
 	// システムオブジェクト
 	AddGameObject<Camera>(0);

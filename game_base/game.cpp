@@ -36,6 +36,7 @@ void Game::Init()
 	m_SceneName = GAME_SCENE;
 	GUI::drawGuiFlag = false;
 	GUI::playerControllFlag = true;
+	GUI::drawLocalLightFlag = false;
 
 	// システムオブジェクト
 	AddGameObject<Camera>(0);

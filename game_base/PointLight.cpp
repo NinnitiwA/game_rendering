@@ -77,18 +77,18 @@ void PointLight::Update()
 	{
 		g_PointLights.PointLight[i].Position += D3DXVECTOR4(m_MoveVector[i], 0.0f);
 
-		if (g_PointLights.PointLight[i].Position.x < -10.0f || g_PointLights.PointLight[i].Position.x > 10.0f)
+		if (g_PointLights.PointLight[i].Position.x < -20.0f || g_PointLights.PointLight[i].Position.x > 20.0f)
 			m_MoveVector[i].x *= -1;
 		if (g_PointLights.PointLight[i].Position.y < 0.0f || g_PointLights.PointLight[i].Position.y > 5.0f)
 			m_MoveVector[i].y *= -1;
-		if (g_PointLights.PointLight[i].Position.z < -10.0f || g_PointLights.PointLight[i].Position.z > 10.0f)
+		if (g_PointLights.PointLight[i].Position.z < -20.0f || g_PointLights.PointLight[i].Position.z > 20.0f)
 			m_MoveVector[i].z *= -1;
 	}
 
 
 
 	// モデル描画フラグ
-	m_ModelFlag = GUI::drawFlag;
+	m_ModelFlag = GUI::drawLocalLightFlag;
 	// 光源種類
 	if (GUI::lightType == 0) m_UseFlag = true;
 	else m_UseFlag = false;
@@ -116,11 +116,8 @@ void PointLight::Draw()
 		Renderer::GetDeviceContext()->VSSetShader(Resource::GetDeferredGBufferVS(), NULL, 0);
 		Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
 
-		D3DXMATRIX world, scale, rot, trans;
-		D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-		D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-		D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-		world = scale * rot * trans;
+		// マトリクス設定
+		D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
 		Renderer::SetWorldMatrix(&world);
 
 		// モデル描画
@@ -128,35 +125,31 @@ void PointLight::Draw()
 	}
 }
 
-//
-//void PointLight::DrawZPrePass()
-//{
-//	if (!m_UseFlag) return;
-//
-//
-//	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
-//	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
-//	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
-//
-//	// マトリクス設定
-//	D3DXMATRIX world, scale, rot, trans;
-//	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-//	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-//	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-//	world = scale * rot * trans;
-//	Renderer::SetWorldMatrix(&world);
-//
-//	// 頂点バッファ設定
-//	UINT stride = sizeof(VERTEX_3D);
-//	UINT offset = 0;
-//	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
-//
-//	// プリミティブトポロジ設定
-//	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-//
-//	// ポリゴン描画
-//	Resource::GetSphereModel()->Draw();
-//}
+
+void PointLight::DrawZPrePass()
+{
+	if (!m_UseFlag) return;
+
+
+	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
+	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
+
+	// マトリクス設定
+	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
+	Renderer::SetWorldMatrix(&world);
+
+	// 頂点バッファ設定
+	UINT stride = sizeof(VERTEX_3D);
+	UINT offset = 0;
+	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+
+	// プリミティブトポロジ設定
+	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	// ポリゴン描画
+	Resource::GetSphereModel()->Draw();
+}
 
 void PointLight::DrawLighting()
 {

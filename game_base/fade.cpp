@@ -3,6 +3,7 @@
 #include "resource.h"
 #include "fade.h"
 
+bool Fade::m_FadeTexture = true;
 
 void Fade::Init()
 {
@@ -56,7 +57,8 @@ void Fade::Draw()
 	Renderer::SetWorldViewProjection2D();
 
 	// テクスチャ設定
-	Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetFadeTexture());
+	if(m_FadeTexture) Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetFadeTexture());
+	else Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetKenshouTexture());
 
 	// マテリアル設定
 	MATERIAL material;

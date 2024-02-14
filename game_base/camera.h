@@ -26,6 +26,10 @@ private:
 	CameraOscillationMode m_CameraOscillationMode{}; // カメラの振動レベル
 	int m_CameraOscillationFrame = 10;               // カメラの振動フレーム
 
+	// タイトルシーン用
+	int m_Phase;      // カメラのフェーズ
+	int m_PhaseFrame; // カメラフレーム
+
 	// シャドウマップ用
 	float m_CascadeArea[SHADOWMAP_NUM] = { 30.0f, 60.0f, 100.0f };
 	LIGHT* m_Light;
@@ -52,4 +56,6 @@ public:
 		m_CameraOscillationMode = cameraOscillationMode;
 		m_CameraOscillationFrame = 0;
 	}
+	// タイトルシーンでのカメラ制御
+	void ActTitleSceneCamera();
 };

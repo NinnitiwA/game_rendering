@@ -37,6 +37,14 @@ void Camera::Update()
 
 
 	// カメラコントロール中の処理
+	if (scene->GetSceneName() == TITLE_SCENE)
+	{
+		ActTitleSceneCamera();
+		return;
+	}
+
+
+	// カメラコントロール中の処理
 	if (GUI::cameraControllFlag)
 	{
 		m_Target = D3DXVECTOR3(playerPos.x, 0.0f, playerPos.z) + GUI::targetDebugOffset;
@@ -377,4 +385,40 @@ void Camera::DrawDebugAnimation()
 	//プロジェクションマトリクス設定
 	D3DXMatrixPerspectiveFovLH(&m_ProjectionMatrix, m_FovY, (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 3000.0f);
 	Renderer::SetProjectionMatrix(&m_ProjectionMatrix);
+}
+
+void Camera::ActTitleSceneCamera()
+{
+	// カメラ処理
+	switch (m_Phase)
+	{
+	case 0:
+		m_Target = D3DXVECTOR3(0.0f, 3.0f, 0.0f);
+		m_Position += D3DXVECTOR3(0.04f, 0.004f, 0.01f);
+
+		break;
+	case 1:
+		m_Target = D3DXVECTOR3(10.0f, 0.0f, 0.0f);
+		m_Position = D3DXVECTOR3(5.0f, 2.0f, -15.0f) + D3DXVECTOR3(15.0f, 10.0f, -15.0f) * (m_PhaseFrame / 210.0f);
+
+		break;
+	case 2:
+		m_Target = -D3DXVECTOR3(15.0f, 0.0f, 10.0f) + D3DXVECTOR3(20.0f, 3.0f, 20.0f) * (m_PhaseFrame / 210.0f);
+		m_Position = m_Target + D3DXVECTOR3(0.0f, 0.0f, 15.0f);
+
+		break;
+	}
+
+
+	// フレーム更新
+	m_PhaseFrame++;
+
+	// フェーズ更新
+	if (m_PhaseFrame >= 210)
+	{
+		m_PhaseFrame = 0;
+		
+		m_Phase++;
+		m_Phase %= 3;
+	}
 }

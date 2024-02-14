@@ -34,6 +34,7 @@ private:
 	static ID3D11ShaderResourceView* m_ChargeAttackTutorialTexture;
 	static ID3D11ShaderResourceView* m_EndTexture;
 	static ID3D11ShaderResourceView* m_DeathTexture;
+	static ID3D11ShaderResourceView* m_KenshouTexture;
 
 	// シェーダ
 	static ID3D11InputLayout*	m_VertexLayout;
@@ -114,6 +115,7 @@ public:
 	static ID3D11ShaderResourceView* const* GetChargeAttackTutorialTexture() { return &m_ChargeAttackTutorialTexture; }
 	static ID3D11ShaderResourceView* const* GetEndTexture() { return &m_EndTexture; }
 	static ID3D11ShaderResourceView* const* GetDeathTexture() { return &m_DeathTexture; }
+	static ID3D11ShaderResourceView* const* GetKenshouTexture() { return &m_KenshouTexture; }
 
 	static ID3D11InputLayout* GetVertexLayout() { return m_VertexLayout; }
 	static ID3D11InputLayout* GetGrassVertexLayout() { return m_GrassVertexLayout; }

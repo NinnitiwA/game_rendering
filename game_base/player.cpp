@@ -67,7 +67,7 @@ void Player::Update()
 
 
 	// プレイヤー操作不可能な場合
-	if (!m_CanControl)return;
+	if (!m_CanControl || scene->GetSceneName() == TITLE_SCENE)return;
 
 
 	// 攻撃を受けている場合
@@ -541,6 +541,8 @@ void Player::Update()
 
 void Player::Draw()
 {
+	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
+
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetDeferredGBufferVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPlayerPS(), NULL, 0);
@@ -572,6 +574,8 @@ void Player::Draw()
 
 void Player::DrawShadowMapping()
 {
+	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
+	
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetShadowMappingVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetShadowMappingPS(), NULL, 0);
@@ -585,6 +589,8 @@ void Player::DrawShadowMapping()
 
 void Player::DrawZPrePass()
 {
+	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
+
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);

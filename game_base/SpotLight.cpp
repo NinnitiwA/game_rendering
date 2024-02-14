@@ -96,7 +96,7 @@ void SpotLight::Update()
 
 
 	// ƒ‚ƒfƒ‹•`‰æƒtƒ‰ƒO
-	m_ModelFlag = GUI::drawFlag;
+	m_ModelFlag = GUI::drawLocalLightFlag;
 	// ŒõŒ¹Ží—Þ
 	if (GUI::lightType == 0) m_UseFlag = false;
 	else m_UseFlag = true;

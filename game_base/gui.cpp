@@ -24,21 +24,21 @@ bool GUI::addEnemyObjectFlag = false;
 
 PlayerAnimation GUI::playerAnimation = { false, {false} };
 
-bool GUI::drawFlag = false;
+bool GUI::drawLocalLightFlag = false;
 int  GUI::lightType = 0;
-int  GUI::pointLightNum = 10;
+int  GUI::pointLightNum = 200;
 int  GUI::textureType = 6;
 
 D3DXCOLOR GUI::PBRObjectColor = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 bool GUI::pbrObjectDrawFlag = false;
 bool GUI::postProcessFlag = true;
-bool GUI::depthOfField = false;
+bool GUI::depthOfField = true;
 bool GUI::depthOfFieldDebugFlag = false;
 D3DXVECTOR4 GUI::depthParameter = D3DXVECTOR4(0.940f, 0.970f, 1.25f, 0.0f);
 bool GUI::fog = false;
 FOG GUI::fogParameter = {};
-bool  GUI::bloom = false;
-float GUI::luminanceValue = 0.975f;
+bool  GUI::bloom = true;
+float GUI::luminanceValue = 0.775f;
 bool  GUI::antiAliasing = false;
 float GUI::antiAliasingBias = 0.075f;
 float GUI::UVOffset = 0.5f;
@@ -147,7 +147,7 @@ void GUI::ImGuiRenderRenderingMenu()
 		ImGui::Checkbox("DrawCascadeShadow", &cascadeFlag);
 
 		// ŒõŒ¹ƒ‚ƒfƒ‹•`‰æƒtƒ‰ƒO
-		ImGui::Checkbox("DrawLightModel", &drawFlag);
+		ImGui::Checkbox("DrawLightModel", &drawLocalLightFlag);
 
 		ImGui::Text("RenderMode");
 		ImGui::RadioButton("PointLight", &lightType, 0);

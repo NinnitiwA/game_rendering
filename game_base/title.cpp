@@ -10,6 +10,8 @@
 #include "camera.h"
 #include "player.h"
 #include "enemy.h"
+#include "enemyMagic.h"
+#include "enemyStone.h"
 #include "field.h"
 #include "fade.h"
 #include "directionalLight.h"
@@ -21,6 +23,7 @@ void Title::Init()
 {
 	// 初期設定
 	m_SceneName = TITLE_SCENE;
+	GUI::drawLocalLightFlag = true;
 
 	// システムオブジェクト
 	AddGameObject<Camera>(0);
@@ -33,23 +36,18 @@ void Title::Init()
 	m_Polygon2D = new Polygon2D();
 	m_Polygon2D->Init();
 
+	// プレイヤー
+	AddGameObject<Player>(1)->SetPosition(D3DXVECTOR3(100.0f, 100.0f, 100.0f));
+
+	AddGameObject<Enemy>(1)->SetPosition(D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+	AddGameObject<EnemyMagic>(1)->SetPosition(D3DXVECTOR3(-8.0f, 1.0f, 8.0f));
+	AddGameObject<EnemyStone>(1)->SetPosition(D3DXVECTOR3(8.0f, 1.0f, -8.0f));
 
 	// 環境オブジェクト
-
-	// プレイヤー
-	Player* player = AddGameObject<Player>(1);
-
+	AddGameObject<Field>(1);
 	AddGameObject<DirectionalLight>(1);
 	AddGameObject<PointLight>(1);
 	AddGameObject<SpotLight>(1);
-
-
-	// Audio
-	//m_BGM = polygon2D->AddComponent<Audio>();
-	//m_BGM->Load("asset\\audio\\bgm\\bgm.wav");
-	//m_BGM->Play();
-	//m_SE = polygon2D->AddComponent<Audio>();
-	//m_SE->Load("asset\\audio\\se\\move.wav");
 
 	getchar();
 }
@@ -65,6 +63,7 @@ void Title::Update()
 	if (Input::GetKeyPress('1'))
 	{
 		m_NextScene = true;
+		m_Fade->SetFadeTexture(false);
 		m_Fade->SetFadeIn();
 		GUI::sceneEndFlag = false;
 		//m_SE->Play();
@@ -73,6 +72,7 @@ void Title::Update()
 	if (Input::GetKeyPress('2'))
 	{
 		m_NextScene = false;
+		m_Fade->SetFadeTexture(false);
 		m_Fade->SetFadeIn();
 		GUI::sceneEndFlag = false;
 		//m_SE->Play();

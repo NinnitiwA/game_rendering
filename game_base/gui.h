@@ -79,10 +79,10 @@ public:
 	static PlayerAnimation playerAnimation; // プレイヤー行動アニメーションフラグ
 	
 	// ライト・texture
-	static bool drawFlag;     // 光源オブジェクト描画フラグ
-	static int lightType;     // 光源タイプ
-	static int pointLightNum; // ポイントライトの数
-	static int textureType;   // 描画テクスチャタイプ
+	static bool drawLocalLightFlag; // 光源オブジェクト描画フラグ
+	static int lightType;           // 光源タイプ
+	static int pointLightNum;       // ポイントライトの数
+	static int textureType;         // 描画テクスチャタイプ
 
 	// shadow
 	static bool cascadeFlag;
