@@ -39,8 +39,8 @@ void Camera::Update()
 	// カメラコントロール中の処理
 	if (GUI::cameraControllFlag)
 	{
-		m_Target = playerPos + GUI::targetDebugOffset;
-		m_Position = m_Target + m_FixedDistance + GUI::cameraDebugOffset;
+		m_Target = D3DXVECTOR3(playerPos.x, 0.0f, playerPos.z) + GUI::targetDebugOffset;
+		m_Position = m_Target + m_FixedDistance + GUI::cameraDebugOffset + D3DXVECTOR3(sinf(GUI::cameraRotation) * 30.0f, -playerPos.y, 15.0f -cosf(GUI::cameraRotation) * 30.0f);
 		return;
 	}
 
@@ -96,29 +96,6 @@ void Camera::Update()
 	m_OldTarget = m_Target;
 	// カメラの座標を反映
 	m_Position = m_Target + m_EffectOffset + m_FixedDistance; 
-
-	// プレイヤー操作中でない場合
-	if (GUI::playerControllFlag) return;
-
-	// 座標
-	if (Input::GetKeyPress('H'))
-		m_Position.x -= 0.1f;
-
-	if (Input::GetKeyPress('K'))
-		m_Position.x += 0.1f;
-
-	if (Input::GetKeyPress('U'))
-		m_Position.z += 0.1f;
-
-	if (Input::GetKeyPress('J'))
-		m_Position.z -= 0.1f;
-
-	if (Input::GetKeyPress('Y'))
-		m_Position.y += 0.1f;
-
-	if (Input::GetKeyPress('I'))
-		m_Position.y -= 0.1f;
-
 }
 
 

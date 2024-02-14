@@ -22,26 +22,30 @@ bool CalcFrustumCulling(float3 worldPos);
 
 
 // コンピュートシェーダ
-[numthreads(1, 1, 1)]
-void main(uint3 dispatchThreadId : SV_DispatchThreadID, uint3 groupId : SV_GroupID, uint3 groupIdInThread : SV_GroupThreadID)
+[numthreads(256, 1, 1)]
+void main(uint3 dispatchThreadId : SV_DispatchThreadID)
 {
     // スレッドIDを取得
-    uint threadID = dispatchThreadId.x;
+	uint threadID = dispatchThreadId.x * 256;
 
 
     // 各スレッドが担当する範囲の処理
-    for (int i = threadID; i < 40000; i+= 4)
+    for (int i = 0; i < 256; i++)
+	if(threadID < WorldPositionArgs.Length)
     {
         // ワールド座標変換
-        float3 worldPos = WorldPositionArgs[i].Position;
+        float3 worldPos = WorldPositionArgs[threadID + i].Position;
 
         // 視錐台カリング処理
         if (CalcFrustumCulling(worldPos))
         {
+			// スレッドセーフ
+			InterlockedAdd(gInstanceNumBuffer[0].InstanceNum, 1);
+
 			// 描画するオブジェクトの座標を格納
-			gCullingResultBuffer[gInstanceNumBuffer[0].InstanceNum].Position = worldPos;
+			gCullingResultBuffer[1 + gInstanceNumBuffer[0].InstanceNum].Position = worldPos;
 			// インスタンスの数を加算
-			gInstanceNumBuffer[0].InstanceNum++;
+			//gInstanceNumBuffer[0].InstanceNum++;
         }
     }
 }

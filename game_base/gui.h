@@ -53,6 +53,7 @@ public:
 	static void ImGuiRenderSRV();
 	static void ImGuiRenderCascadeShadow();
 	static void ImGuiRenderPlayerAnimation();
+	static void ImGuiRenderCameraControll();
 
 	static void BeginProfiling();
 	static void EndProfiling(int num);
@@ -71,6 +72,7 @@ public:
 	static bool cameraControllFlag;    // カメラ操作
 	static D3DXVECTOR3 cameraDebugOffset; // デバッグ用カメラオフセット
 	static D3DXVECTOR3 targetDebugOffset; // デバッグ用ターゲットオフセット
+	static float cameraRotation;          // デバッグ用カメラ回転量
 	static bool drawInvisibleBox;      // 透明オブジェクト描画フラグ
 	static bool addEnemyObjectFlag;    // エネミー生成フラグ
 

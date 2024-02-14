@@ -36,11 +36,8 @@ void DebugObject::Draw()
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
 
 	// マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
+	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
+	Renderer::SetWorldMatrix(&world);
 
 	Renderer::SetWorldMatrix(&world);
 
@@ -73,11 +70,8 @@ void DebugObject::DrawDebug()
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
 	// マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
+	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
+	Renderer::SetWorldMatrix(&world);
 
 	Renderer::SetWorldMatrix(&world);
 

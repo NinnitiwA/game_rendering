@@ -14,10 +14,6 @@ void Bullet::Init()
 {
 	m_Scale = D3DXVECTOR3(0.6f, 0.6f, 0.6f);
 	m_Velocity = D3DXVECTOR3(0.0f, 0.0f, 0.1f);
-
-	// AudioÇÃÉçÅ[Éh
-	//m_AttackSE = AddComponent<Audio>();
-	//m_AttackSE->Load("asset\\audio\\se\\enemy_attack.wav");
 }
 
 void Bullet::Uninit()

@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "manager.h"
 #include "scene.h"
+#include "player.h"
 #include "enemy.h"
 #include "enemyMagic.h"
 #include "enemyStone.h"
@@ -17,6 +18,7 @@ D3DXVECTOR4 GUI::playerMaterial = D3DXVECTOR4(0.5f, 0.12f, 0.0f, 0.0f);
 bool GUI::cameraControllFlag = false;
 D3DXVECTOR3 GUI::cameraDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 D3DXVECTOR3 GUI::targetDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+float GUI::cameraRotation = 0.0f;
 bool GUI::drawInvisibleBox = false;
 bool GUI::addEnemyObjectFlag = false;
 
@@ -110,7 +112,7 @@ void GUI::ImGuiRender()
 void GUI::ImGuiRenderRenderingMenu()
 {
 	Scene* scene = Manager::GetScene();
-
+	Player* player = scene->GetGameObject<Player>();
 
 	// ImGuiウィンドウ作成
 	ImGui::Begin("Test");
@@ -120,26 +122,11 @@ void GUI::ImGuiRenderRenderingMenu()
 	ImGui::Checkbox("PlayerControll", &playerControllFlag);
 	// カメラコントロールフラグ
 	ImGui::Checkbox("CameraControll", &cameraControllFlag);
-	ImGui::SameLine();
-	if (ImGui::Button("Reset"))
-	{
-		cameraDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		targetDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	}
-	if (cameraControllFlag)
-	{
-		ImGui::Text("Camera Position");
-		ImGui::SliderFloat("cp X:%.4f", &cameraDebugOffset.x, -20.0f, 20.0f);
-		ImGui::SliderFloat("cp Y:%.4f", &cameraDebugOffset.y, -20.0f, 20.0f);
-		ImGui::SliderFloat("cp Z:%.4f", &cameraDebugOffset.z, -20.0f, 20.0f);
-		ImGui::Text("Target Position");
-		ImGui::SliderFloat("tp X:%.4f", &targetDebugOffset.x, -20.0f, 20.0f);
-		ImGui::SliderFloat("tp Y:%.4f", &targetDebugOffset.y, -20.0f, 20.0f);
-		ImGui::SliderFloat("tp Z:%.4f", &targetDebugOffset.z, -20.0f, 20.0f);
-	}
+	if (cameraControllFlag) ImGuiRenderCameraControll();
+
 	// アニメーションウィンドウ描画
 	ImGui::Checkbox("PlayerAnimation", &playerAnimation.DrawDebugWindow);
-	if(playerAnimation.DrawDebugWindow) ImGuiRenderPlayerAnimation();
+	if (playerAnimation.DrawDebugWindow) ImGuiRenderPlayerAnimation();
 	// プレイヤーマテリアル
 	ImGui::SliderFloat("Roughness:%.4f", &playerMaterial.x, 0.0f, 1.0f);
 	ImGui::SliderFloat("Metalic:%.4f", &playerMaterial.y, 0.0f, 1.0f);
@@ -147,11 +134,11 @@ void GUI::ImGuiRenderRenderingMenu()
 	ImGui::Checkbox("DrawInvisibleBox", &drawInvisibleBox);
 
 	// エネミー追加
-	if (ImGui::Button("Enemy")) scene->AddGameObject<Enemy>(1);
+	if (ImGui::Button("Enemy")) scene->AddGameObject<Enemy>(1)->SetPosition(player->GetPosition() + D3DXVECTOR3(0.0f, 7.0f, 7.0f));
 	ImGui::SameLine();
-	if (ImGui::Button("EnemyMagic")) scene->AddGameObject<EnemyMagic>(1);
+	if (ImGui::Button("EnemyMagic")) scene->AddGameObject<EnemyMagic>(1)->SetPosition(player->GetPosition() + D3DXVECTOR3(0.0f, 7.0f, 7.0f));
 	ImGui::SameLine();
-	if (ImGui::Button("EnemyStone")) scene->AddGameObject<EnemyStone>(1);
+	if (ImGui::Button("EnemyStone")) scene->AddGameObject<EnemyStone>(1)->SetPosition(player->GetPosition() + D3DXVECTOR3(0.0f, 7.0f, 7.0f));
 
 	// シャドウ・ライティング
 	if (ImGui::CollapsingHeader("Shadow Lighting"))
@@ -527,6 +514,31 @@ void GUI::ImGuiRenderPlayerAnimation()
 	ID3D11ShaderResourceView* srv = Renderer::GetDebugAnimationTexture();
 	ImGui::Image((ImTextureID)srv, ImVec2(400, 225));
 
+	ImGui::End();
+}
+
+void GUI::ImGuiRenderCameraControll()
+{
+	ImGui::Begin("Camera");
+
+	if (ImGui::Button("Reset"))
+	{
+		cameraDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		targetDebugOffset = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		cameraRotation = 0.0f;
+	}
+
+	ImGui::Text("Camera Position");
+	ImGui::SliderFloat("cp X:%.4f", &cameraDebugOffset.x, -60.0f, 60.0f);
+	ImGui::SliderFloat("cp Y:%.4f", &cameraDebugOffset.y, -60.0f, 60.0f);
+	ImGui::SliderFloat("cp Z:%.4f", &cameraDebugOffset.z, -60.0f, 60.0f);
+	ImGui::Text("Target Position");
+	ImGui::SliderFloat("tp X:%.4f", &targetDebugOffset.x, -60.0f, 60.0f);
+	ImGui::SliderFloat("tp Y:%.4f", &targetDebugOffset.y, -60.0f, 60.0f);
+	ImGui::SliderFloat("tp Z:%.4f", &targetDebugOffset.z, -60.0f, 60.0f);
+	ImGui::Text("Camera Rotation");
+	ImGui::SliderFloat("c Rot:%.4f", &cameraRotation, -4.0f, 4.0f);
+	
 	ImGui::End();
 }
 

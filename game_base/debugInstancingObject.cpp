@@ -9,7 +9,7 @@
 #define INSTANCE_X 200
 #define INSTANCE_Y 200
 #define INSTANCE_NUM INSTANCE_X * INSTANCE_X
-#define INSTANCE_SPACE 1.5f
+#define INSTANCE_SPACE 2.5f
 
 void DebugInstancingObject::Init()
 {
@@ -226,11 +226,7 @@ void DebugInstancingObject::Draw()
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
 
 	// マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
+	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
 	Renderer::SetWorldMatrix(&world);
 
 	// シェーダーリソースビューのバインディング
@@ -246,11 +242,7 @@ void DebugInstancingObject::DrawZPrePass()
 	Renderer::GetDeviceContext()->CSSetShader(Resource::GetInstancedFrustumCullingCS(), NULL, 0);
 
 	// マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
+	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
 	Renderer::SetWorldMatrix(&world);
 
 	// 入力用SRVセット
@@ -262,8 +254,11 @@ void DebugInstancingObject::DrawZPrePass()
 	UINT insNumCount = 1;
 	Renderer::GetDeviceContext()->CSSetUnorderedAccessViews(1, 1, &m_InstanceNumBufferUAV, &insNumCount);
 
+	// スレッド数の計算
+	int dispatchThreadCountX = (INSTANCE_NUM + 255) / 256;
+
 	// コンピュートシェーダーのディスパッチ
-	Renderer::GetDeviceContext()->Dispatch(4, 1, 1);
+	Renderer::GetDeviceContext()->Dispatch(256, 1, 1);
 
 
 
@@ -303,7 +298,6 @@ void DebugInstancingObject::DrawZPrePass()
 
 	// 入力用SRVセット
 	Renderer::GetDeviceContext()->VSSetShaderResources(1, 1, &m_CullingShaderResourceView);
-	Renderer::GetDeviceContext()->VSSetShaderResources(2, 1, &m_InstanceNumShaderResourceView);
 
 	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetInstancedVS(), NULL, 0);
