@@ -4,33 +4,25 @@
 #include "scene.h"
 #include "manager.h"
 #include "camera.h"
-#include "rock.h"
+#include "arrow.h"
 #include "particle.h"
 #include "model.h"
 #include "random.h"
 
-void Rock::Init()
+void Arrow::Init()
 {
-	float random = Random(0, 360);
-	m_Rotation = D3DXVECTOR3(0.0f, random * D3DX_PI / 180.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(3.0f, 3.0f, 3.0f);
+	m_Rotation = D3DXVECTOR3(0.0f, 90.0f * D3DX_PI / 180.0f, 0.0f);
 
 	m_HitPoint = 1.0f;
-
-	// Audioのロード
-	//if (!m_BreakSE)
-	//{
-	//	m_BreakSE = AddComponent<Audio>();
-	//	m_BreakSE->Load("asset\\audio\\se\\rock_break.wav");
-	//}
 }
 
-void Rock::Uninit()
+void Arrow::Uninit()
 {
 	GameObject::Uninit();
 }
 
-void Rock::Update()
+void Arrow::Update()
 {
 	Scene* scene = Manager::GetScene();
 
@@ -47,7 +39,7 @@ void Rock::Update()
 	GameObject::Update();
 }
 
-void Rock::Draw()
+void Arrow::Draw()
 {
 	// シェーダ設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
@@ -74,14 +66,14 @@ void Rock::Draw()
 	MATERIAL material;
 	ZeroMemory(&material, sizeof(material));
 	material.Metalic = 0.02f;
-	material.Roughness = 0.42f;
+	material.Roughness = 0.68f;
 	Renderer::SetMaterial(material);
 
 	// ポリゴン描写
-	Resource::GetRockModel()->Draw(material);
+	Resource::GetArrowModel()->Draw(material);
 }
 
-void Rock::DrawShadowMapping()
+void Arrow::DrawShadowMapping()
 {
 	// シェーダ設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
@@ -93,10 +85,10 @@ void Rock::DrawShadowMapping()
 	Renderer::SetWorldMatrix(&world);
 
 	// ポリゴン描写
-	Resource::GetRockModel()->Draw();
+	Resource::GetArrowModel()->Draw();
 }
 
-void Rock::DrawZPrePass()
+void Arrow::DrawZPrePass()
 {
 	// シェーダ設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
@@ -108,10 +100,10 @@ void Rock::DrawZPrePass()
 	Renderer::SetWorldMatrix(&world);
 
 	// ポリゴン描写
-	Resource::GetRockModel()->Draw();
+	Resource::GetArrowModel()->Draw();
 }
 
-void Rock::DrawReflection()
+void Arrow::DrawReflection()
 {
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetColorVS(), NULL, 0);
@@ -122,5 +114,5 @@ void Rock::DrawReflection()
 	Renderer::SetWorldMatrix(&world);
 
 	// ポリゴン描画
-	Resource::GetRockModel()->Draw();
+	Resource::GetArrowModel()->Draw();
 }

@@ -19,6 +19,7 @@ Model* Resource::m_TreeModel[3] = { NULL };
 Model* Resource::m_GroundModel = NULL;
 Model* Resource::m_SnakeHeadModel = NULL;
 Model* Resource::m_SnakeBodyModel = NULL;
+Model* Resource::m_ArrowModel = NULL;
 
 ID3D11ShaderResourceView* Resource::m_FieldTexture          = NULL;
 ID3D11ShaderResourceView* Resource::m_EnvironmentMapTexture = NULL;
@@ -30,6 +31,8 @@ ID3D11ShaderResourceView* Resource::m_JumpTutorialTexture         = NULL;
 ID3D11ShaderResourceView* Resource::m_DashTutorialTexture         = NULL;
 ID3D11ShaderResourceView* Resource::m_PressAttackTutorialTexture  = NULL;
 ID3D11ShaderResourceView* Resource::m_ChargeAttackTutorialTexture = NULL;
+ID3D11ShaderResourceView* Resource::m_TitleTexture          = NULL;
+ID3D11ShaderResourceView* Resource::m_TitleSelectTexture    = NULL;
 ID3D11ShaderResourceView* Resource::m_EndTexture            = NULL;
 ID3D11ShaderResourceView* Resource::m_DeathTexture          = NULL;
 ID3D11ShaderResourceView* Resource::m_KenshouTexture        = NULL;
@@ -120,6 +123,8 @@ void Resource::Init()
 	m_SnakeHeadModel->Load("asset\\model\\enemy\\snakeHead\\snake_head.obj");
 	m_SnakeBodyModel = new Model();
 	m_SnakeBodyModel->Load("asset\\model\\enemy\\snakeBody\\snake_body.obj");
+	m_ArrowModel = new Model();
+	m_ArrowModel->Load("asset\\model\\arrow\\arrow.obj", false);
 
 	// テクスチャ読み込み
 	Resource::LoadTexture("asset/texture/field004.jpg", &m_FieldTexture);
@@ -132,6 +137,8 @@ void Resource::Init()
 	Resource::LoadTexture("asset/texture/tutorial/tutorialDash.png", &m_DashTutorialTexture);
 	Resource::LoadTexture("asset/texture/tutorial/tutorialPressAttack.png", &m_PressAttackTutorialTexture);
 	Resource::LoadTexture("asset/texture/tutorial/tutorialChargeAttack.png", &m_ChargeAttackTutorialTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/title.png", &m_TitleTexture);
+	Resource::LoadTexture("asset/texture/titleBoard/selectMode.png", &m_TitleSelectTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/end.png", &m_EndTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/death.png", &m_DeathTexture);
 	Resource::LoadTexture("asset/texture/titleBoard/kenshou.png", &m_KenshouTexture);
@@ -220,6 +227,8 @@ void Resource::Uninit()
 	delete m_SnakeHeadModel;
 	m_SnakeBodyModel->Unload();
 	delete m_SnakeBodyModel;
+	m_ArrowModel->Unload();
+	delete m_ArrowModel;
 
 	m_FieldTexture->Release();
 	m_EnvironmentMapTexture->Release();
@@ -231,6 +240,8 @@ void Resource::Uninit()
 	m_DashTutorialTexture->Release();
 	m_ChargeAttackTutorialTexture->Release();
 	m_PressAttackTutorialTexture->Release();
+	m_TitleSelectTexture->Release();
+	m_TitleTexture->Release();
 	m_EndTexture->Release();
 	m_DeathTexture->Release();
 	m_KenshouTexture->Release();

@@ -108,6 +108,23 @@ static D3DXVECTOR3 g_SnakeAttackAnimScale[34] =
 	D3DXVECTOR3(0.96f, 0.96f,1.05f),
 };
 
+// 矢印看板オブジェクトの座標
+static D3DXVECTOR3 g_TutorialArrowPositionList[] =
+{
+	D3DXVECTOR3(0.0f, 3.0f, 10.0f),
+	D3DXVECTOR3(95.0f, 8.0f, 95.0f),
+	D3DXVECTOR3(175.0f, 8.0f, 90.0f),
+	D3DXVECTOR3(145.0f, 8.0f, 210.0f),
+};
+
+// 矢印看板オブジェクトの角度
+static D3DXVECTOR3 g_TutorialArrowRotationList[] =
+{
+	D3DXVECTOR3(0.0f, 270.0f, 0.0f),
+	D3DXVECTOR3(0.0f, 270.0f, 0.0f),
+	D3DXVECTOR3(0.0f, 155.0f, 0.0f),
+	D3DXVECTOR3(0.0f, 200.0f, 0.0f),
+};
 
 // エリアに配置する岩の座標リスト
 static D3DXVECTOR3 TSI_RockPositionList[] =

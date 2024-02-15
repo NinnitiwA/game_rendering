@@ -44,6 +44,66 @@ void UIObject::Uninit()
 	GameObject::Uninit();
 }
 
+void UIObject::Update()
+{
+	// フレーム更新
+	m_Frame++;
+
+
+	// UIタイプ別処理
+	switch (m_Type)
+	{
+	case NORMAL_TYPE:
+		if (m_Frame > 240) m_Frame = 240;
+		break;
+
+	case BLINK_TYPE:
+		if (m_Frame > 240) m_Frame = 0;
+		break;
+	}
+}
+
+void UIObject::Draw()
+{
+	// 入力レイアウト設定
+	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// 頂点バッファ設定
+	SetVertexBuffer();
+
+	// シェーダ設定
+	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
+	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
+
+	// マトリクス設定
+	Renderer::SetWorldViewProjection2D();
+
+	// テクスチャ設定
+	switch (m_Number)
+	{
+	case 0: // タイトル画面
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetTitleTexture());
+		break;
+	
+	case 1: // タイトルセレクト画面
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, Resource::GetTitleSelectTexture());
+		break;
+	}
+
+	// マテリアル設定
+	MATERIAL material;
+	ZeroMemory(&material, sizeof(material));
+	material.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, fabs(cosf(180.0f * ((float)m_Frame / 240.0f) * D3DX_PI / 180.0f)) * 0.85f);
+	material.TextureEnable = true;
+	Renderer::SetMaterial(material);
+
+	// プリミティブトポロジ設定
+	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	// ポリゴン描写
+	Renderer::GetDeviceContext()->Draw(4, 0);
+}
+
 
 void UIObject::SetVertexBuffer()
 {

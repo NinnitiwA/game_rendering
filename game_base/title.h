@@ -15,5 +15,5 @@ public:
 	void Draw() override;
 
 	// タイトル画面の背景用としてゲームオブジェクトを初期設定・配置
-	//void TitleStageInit();
+	void InitTitleStage();
 };

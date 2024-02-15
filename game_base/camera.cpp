@@ -319,42 +319,13 @@ void Camera::DrawCascadeShadowMap(int i)
 	// 直行射影行列に変換
 	D3DXMatrixOrthoOffCenterLH(&light.ProjectionMatrix, vMin.x, vMax.x, vMin.y, vMax.y, vMin.z, vMax.z);
 
-
-
-	//// クロップ行列を計算
-	//float scaleX = 2.0f / (vMax.x - vMin.x);
-	//float scaleY = 2.0f / (vMax.y - vMin.y);
-	//float offsetX = (vMax.x + vMin.x) * -0.5f * scaleX;
-	//float offsetY = (vMax.y + vMin.y) * -0.5f * scaleY;
-	//D3DXMATRIX clopMatrix;
-	//D3DXMatrixIdentity(&clopMatrix);
-	//clopMatrix.m[0][0] = scaleX;
-	//clopMatrix.m[1][1] = scaleY;
-	//clopMatrix.m[3][0] = offsetX;
-	//clopMatrix.m[3][1] = offsetY;
-
-
-
-	// プロジェクション行列にクロップ行列を掛けたものをセット
-	//light.ViewMatrix *= clopMatrix;
-	//Renderer::SetViewMatrix(&light.ViewMatrix);
-	//light.ProjectionMatrix *= clopMatrix;
-	//D3DXMatrixOrthoOffCenterLH(&light.ProjectionMatrix, vMin.x, vMax.x, vMin.y, vMax.y, vMin.z, vMax.z);
+	// プロジェクション行列を直行射影行列に変換したものをセット
 	Renderer::SetProjectionMatrix(&light.ProjectionMatrix);
 	Renderer::SetLight(light);
 
 
-
-	// LightViewProjection行列にプロック行列を乗算
-	m_LVPC[i] = light.ViewMatrix * light.ProjectionMatrix;
-
-	//D3DXMATRIX view;
-	//D3DXMatrixTranspose(&view, &light.ViewMatrix);
-	//D3DXMATRIX projection;
-	//D3DXMatrixTranspose(&projection, &light.ProjectionMatrix);
-	//m_LVPC[i] = view * projection;
-
 	// 定数バッファに格納
+	m_LVPC[i] = light.ViewMatrix * light.ProjectionMatrix;
 	if (i == 2) Renderer::SetLightViewProjectionCropMatrix(m_LVPC);
 }
 
@@ -401,12 +372,12 @@ void Camera::ActTitleSceneCamera()
 		break;
 	case 1:
 		m_Target = D3DXVECTOR3(10.0f, 0.0f, 0.0f);
-		m_Position = D3DXVECTOR3(5.0f, 2.0f, -15.0f) + D3DXVECTOR3(15.0f, 10.0f, -15.0f) * (m_PhaseFrame / 210.0f);
+		m_Position = D3DXVECTOR3(5.0f, 4.0f, -15.0f) + D3DXVECTOR3(15.0f, 10.0f, -15.0f) * (m_PhaseFrame / 210.0f);
 
 		break;
 	case 2:
-		m_Target = -D3DXVECTOR3(15.0f, 0.0f, 10.0f) + D3DXVECTOR3(20.0f, 3.0f, 20.0f) * (m_PhaseFrame / 210.0f);
-		m_Position = m_Target + D3DXVECTOR3(0.0f, 0.0f, 15.0f);
+		m_Target = D3DXVECTOR3(26.0f, 6.0f, 25.0f) + D3DXVECTOR3(3.0f, 1.0f, 2.0f) * (m_PhaseFrame / 210.0f);
+		m_Position = m_Target + D3DXVECTOR3(2.0f, 1.5f, -5.0f);
 
 		break;
 	}
@@ -419,6 +390,7 @@ void Camera::ActTitleSceneCamera()
 	if (m_PhaseFrame >= 210)
 	{
 		m_PhaseFrame = 0;
+		m_Position = D3DXVECTOR3(0.0f, 8.0f, -12.0f);
 		
 		m_Phase++;
 		m_Phase %= 3;

@@ -199,9 +199,16 @@ void EnemyStone::Update()
 
 void EnemyStone::Draw()
 {
+	// 被ターゲット時にアウトライン描画
+	if (m_isTarget) DrawOutline();
+
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetDeferredGBufferVS(), NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
+	if (m_EnemyState->GetStateName() == DAMAGED_STATE) Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferColoredObjectPS(), NULL, 0);
+	else Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
 
 	// マトリクス設定
 	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
@@ -222,6 +229,11 @@ void EnemyStone::Draw()
 	material.Roughness = 0.135f;
 	material.Metalic = 0.26f;
 	material.TextureEnable = true;
+
+	// カラー設定
+	POSTPROCESSPARAMETER param{};
+	param.color = D3DXVECTOR4(1.5f, 1.0f, 1.0f, 0.5f);
+	Renderer::SetPostProcessParameter(param);
 
 	// ポリゴン描画
 	Resource::GetEnemyStoneModel()->Draw(material);
@@ -244,6 +256,9 @@ void EnemyStone::DrawShadowMapping()
 
 void EnemyStone::DrawZPrePass()
 {
+	// 被ターゲット時にアウトライン描画
+	if (m_isTarget) DrawOutline();
+
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);

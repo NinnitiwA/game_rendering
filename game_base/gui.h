@@ -112,4 +112,7 @@ public:
 	static int profileNum;
 	static std::vector<PROFILE*> profile;
 	static PROFILE* allTimeProfile;
+
+	// デバッグ用
+	static D3DXVECTOR4 debugPosition;
 };

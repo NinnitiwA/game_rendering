@@ -26,7 +26,7 @@ PlayerAnimation GUI::playerAnimation = { false, {false} };
 
 bool GUI::drawLocalLightFlag = false;
 int  GUI::lightType = 0;
-int  GUI::pointLightNum = 200;
+int  GUI::pointLightNum = 20;
 int  GUI::textureType = 6;
 
 D3DXCOLOR GUI::PBRObjectColor = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
@@ -54,6 +54,8 @@ D3DXVECTOR3 GUI::pos[] = {};
 D3DXVECTOR3 GUI::target = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 D3DXVECTOR3 GUI::frustumPos[] = {};
 D3DXVECTOR3 GUI::test = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+D3DXVECTOR4 GUI::debugPosition = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 0.0f);
 
 void GUI::ImGuiInit(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
 {
@@ -116,7 +118,6 @@ void GUI::ImGuiRenderRenderingMenu()
 
 	// ImGuiウィンドウ作成
 	ImGui::Begin("Test");
-
 
 	// プレイヤー操作フラグ
 	ImGui::Checkbox("PlayerControll", &playerControllFlag);
@@ -288,8 +289,6 @@ void GUI::ImGuiRenderProfiler()
 	// 処理時間テキスト表示
 	{
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_HorizontalScrollbar;
-		if (false)
-			window_flags |= ImGuiWindowFlags_NoScrollWithMouse;
 		ImGui::BeginChild("ChildL", ImVec2(ImGui::GetContentRegionAvail().x * 0.15f, 150), false, window_flags);
 		for (int i = 0; i < profile.size(); i++)
 		{
@@ -351,9 +350,8 @@ void GUI::ImGuiRenderProfiler()
 			values_offset = (values_offset + 1) % IM_ARRAYSIZE(values);
 
 			// 更新時間の進行
-			refresh_time += 1.0f / 60.0f;
+			refresh_time += ImGui::GetIO().DeltaTime;
 		}
-		//values[79] = ImGui::GetIO().DeltaTime * 1000.0f;
 
 		// 平均値の計算とグラフの描画
 		{

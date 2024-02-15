@@ -29,7 +29,7 @@ protected:
 	bool        m_isTarget = false; // プレイヤーのターゲットにされているかどうかの識別子
 	float       m_HitPoint = 5.0f;  // ヒットポイント
 
-	D3DXVECTOR3 m_Velocity{};
+	D3DXVECTOR3 m_Velocity{};       // 移動方向ベクトル
 	D3DXVECTOR3 m_AttackVector{};   // 攻撃方向ベクトル
 
 	ENEMY_TYPE        m_EnemyType{};      // エネミーの種類
@@ -46,8 +46,6 @@ public:
 		SetTag(ENEMY);
 		m_Rotation = D3DXVECTOR3(0.0f, D3DX_PI * 1.0f, 0.0f);
 	}
-
-
 	void SetVelocity(D3DXVECTOR3 vec) { m_Velocity = vec; }
 	void SetAttackVector(D3DXVECTOR3 attackVector) { m_AttackVector = attackVector; }
 	D3DXVECTOR3 GetAttackVector() { return m_AttackVector; }
@@ -65,7 +63,6 @@ public:
 	float GetAttackRange() { return m_AttackRange; }
 	// 視認範囲取得
 	float GetWalkRange() { return m_WalkRange; }
-
 	// ダメージ処理
 	virtual void SetDamage(float);
 	// 死亡判定処理
@@ -78,6 +75,7 @@ public:
 	void DrawShadowMapping() override;
 	void DrawZPrePass() override;
 	void DrawReflection() override;
+	void DrawOutline();
 };
 
 enum SNAKE_STATE

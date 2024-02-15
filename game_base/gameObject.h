@@ -11,19 +11,29 @@ enum Tag
 	NON,
 };
 
-
 // すべてのゲームオブジェクトの基本となるクラス
 class GameObject
 {
 protected:
-	bool        m_Destroy = false;
-	Tag         m_Tag = NON;
+	bool m_Destroy    = false; // オブジェクト削除識別子
+	bool m_UpdateFlag = true;  // 更新処理識別子
+	bool m_DrawFlag   = true;  // 描画処理識別子
+	Tag  m_Tag        = NON;   // オブジェクトタグ
 
 	D3DXVECTOR3 m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	static D3DXVECTOR3 m_CenterPosition; // ゲーム画面中心座標（プレイヤー座標）
 
 public:
+	void CalcUpdateFlag()
+	{
+		D3DXVECTOR3 vec = m_Position - m_CenterPosition;
+		float length = D3DXVec3Length(&vec);
+		if (length < 60.0f) m_UpdateFlag = true;
+		else m_UpdateFlag = false;
+	}
+	bool GetUpdateFlag() { return m_UpdateFlag; }
 	void SetDestroy() { m_Destroy = true; }
 	bool GetDestroy() { return m_Destroy; }
 	bool Destroy()
@@ -83,6 +93,7 @@ public:
 	}
 	void SetTag(Tag tag) { m_Tag = tag; }
 	Tag GetTag() { return m_Tag; }
+	static void SetCenterPosition(D3DXVECTOR3 pos) { m_CenterPosition = pos; }
 
 	virtual void Init() {}
 
@@ -96,3 +107,5 @@ public:
 	virtual void DrawZPrePass(){}
 	virtual void DrawReflection() {}
 };
+
+inline  D3DXVECTOR3 GameObject::m_CenterPosition = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

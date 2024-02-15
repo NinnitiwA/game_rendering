@@ -189,9 +189,10 @@ void TextEvent::SetTextEvent(TEXTEVENT eventNumber)
 	case TEXTEVENT_TUTORIAL_DODGE:
 		m_TextEvent = TEXTEVENT_TUTORIAL_DODGE;
 		InitTextEvent(0.0f, 200.0f, 500.0f, 200.0f);
+		break;
 
-		 // タイトルボード
-	case TEXTEVENT_TLOB_TITLE:
+		// タイトルボード
+	case TEXTEVENT_TLOB_TITLE: 
 		m_TextEvent = TEXTEVENT_TLOB_TITLE;
 		InitTextEvent(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
 		break;

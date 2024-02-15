@@ -11,9 +11,11 @@
 #include "camera.h"
 #include "player.h"
 #include "enemy.h"
-#include "enemyMagic.h"
-#include "enemyStone.h"
-#include "field.h"
+#include "skydome.h"
+#include "water.h"
+#include "ground.h"
+#include "grass.h"
+#include "tree.h"
 #include "fade.h"
 #include "directionalLight.h"
 #include "SpotLight.h"
@@ -24,7 +26,8 @@ void Title::Init()
 {
 	// 初期設定
 	m_SceneName = TITLE_SCENE;
-	GUI::drawLocalLightFlag = true;
+	GUI::drawGuiFlag = false;
+	GUI::luminanceValue = 0.9f;
 
 	// システムオブジェクト
 	AddGameObject<Camera>(0);
@@ -38,17 +41,26 @@ void Title::Init()
 	m_Polygon2D->Init();
 
 	// プレイヤー
-	AddGameObject<Player>(1)->SetPosition(D3DXVECTOR3(100.0f, 100.0f, 100.0f));
-
-	AddGameObject<Enemy>(1)->SetPosition(D3DXVECTOR3(0.0f, 1.0f, 0.0f));
-	AddGameObject<EnemyMagic>(1)->SetPosition(D3DXVECTOR3(-8.0f, 1.0f, 8.0f));
-	AddGameObject<EnemyStone>(1)->SetPosition(D3DXVECTOR3(8.0f, 1.0f, -8.0f));
+	Player* player = AddGameObject<Player>(1);
+	player->SetPosition(D3DXVECTOR3(0.0f, 4.0f, 0.0f));
+	player->SetRotation(D3DXVECTOR3(0.0f, 180.0f * D3DX_PI/ 180.0f, 0.0f));
 
 	// 環境オブジェクト
-	AddGameObject<Field>(1);
+	AddGameObject<Sky>(1);
+	Water::CreateWave();
+	AddGameObject<Water>(1)->CreateWater(true);
 	AddGameObject<DirectionalLight>(1);
 	AddGameObject<PointLight>(1);
 	AddGameObject<SpotLight>(1);
+	InitTitleStage();
+
+	// UIオブジェクト
+	UIObject* titleUI = AddGameObject<UIObject>(3);
+	titleUI->Init(20.0f + (SCREEN_WIDTH / 2.0f), -60.0f + (SCREEN_HEIGHT / 2.0f), SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+	titleUI->SetUIType(NORMAL_TYPE, 0);
+	UIObject* selectUI = AddGameObject<UIObject>(3);
+	selectUI->Init(20.0f + (SCREEN_WIDTH / 2.0f), 30.0f + (SCREEN_HEIGHT / 2.0f), SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+	selectUI->SetUIType(BLINK_TYPE, 1);
 
 	getchar();
 }
@@ -264,4 +276,41 @@ void Title::Draw()
 	GUI::ImGuiRender();
 
 	Renderer::End();
+}
+
+
+void Title::InitTitleStage()
+{
+	Scene* scene = Manager::GetScene();
+
+	Ground::CreateGround(scene, 2, 1, D3DXVECTOR3(-20.0f, 3.0f, 0.0f));
+	Grass::CreateGrass(scene, 100, 2, 1, D3DXVECTOR3(-20.0f, 3.0f, 0.0f), D3DXVECTOR4(3.0f, 3.0f, 3.0f, 3.0f), 0.0f);
+
+	Ground::CreateGround(scene, 1, 1, D3DXVECTOR3(40.0f, 5.0f, 15.0f));
+	Grass::CreateGrass(scene, 100, 1, 1, D3DXVECTOR3(40.0f, 5.0f, 15.0f), D3DXVECTOR4(3.0f, 3.0f, 3.0f, 3.0f), 0.0f);
+
+	{
+		Tree* tree = scene->AddGameObject<Tree>(1);
+		tree->SetPosition(D3DXVECTOR3(22.0f, 5.0f, 33.0f));
+	}
+	{
+		Tree* tree = scene->AddGameObject<Tree>(1);
+		tree->SetPosition(D3DXVECTOR3(-8.0f, 3.0f, 14.0f));
+	}
+	{
+		Tree* tree = scene->AddGameObject<Tree>(1);
+		tree->SetPosition(D3DXVECTOR3(-15.0f, 3.0f, 7.0f));
+	}
+
+	// エネミー
+	{
+		Enemy* enemy = scene->AddGameObject<Enemy>(1);
+		enemy->SetPosition(D3DXVECTOR3(26.0f, 6.0f, 25.0f));
+		enemy->SetRotation(D3DXVECTOR3(0.0f, 15.6f, 0.0f));
+	}
+	{
+		Enemy* enemy = scene->AddGameObject<Enemy>(1);
+		enemy->SetPosition(D3DXVECTOR3(30.0f, 6.0f, 24.0f));
+		enemy->SetRotation(D3DXVECTOR3(0.0f, 17.0f, 0.0f));
+	}
 }

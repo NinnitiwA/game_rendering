@@ -18,8 +18,8 @@
 #include "tree.h"
 #include "water.h"
 
-//D3DXVECTOR3 TheSkyIsland::m_AreaPosition = D3DXVECTOR3(95.0f, 8.0f, 370.0f);
-D3DXVECTOR3 TheSkyIsland::m_AreaPosition = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+D3DXVECTOR3 TheSkyIsland::m_AreaPosition = D3DXVECTOR3(95.0f, 8.0f, 370.0f);
+//D3DXVECTOR3 TheSkyIsland::m_AreaPosition = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 void TheSkyIsland::InitEnvironment()
 {

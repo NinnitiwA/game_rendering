@@ -38,6 +38,8 @@ struct AreaDataStorage
 	std::vector<D3DXVECTOR3> RockPos;
 	std::vector<D3DXVECTOR3> TreePos;
 	std::vector<D3DXVECTOR3> GroundGrassPos;
+	std::vector<D3DXVECTOR3> ArrowPos;
+	std::vector<D3DXVECTOR3> ArrowRot;
 	
 	std::vector<D3DXVECTOR3> EnemyPos;
 	std::vector<D3DXVECTOR3> EnemyMagicPos;

@@ -78,7 +78,7 @@ void WorkSpace::Init()
 	}
 	AddGameObject<Field>(1);
 	AddGameObject<AnimationObject>(5);
-	AddGameObject<DebugInstancingObject>(1);
+	//AddGameObject<DebugInstancingObject>(1);
 }
 
 void WorkSpace::Update()

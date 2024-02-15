@@ -4,6 +4,7 @@
 #include "dataStorage.h"
 #include "tutorial.h"
 #include "title.h"
+#include "game.h"
 #include "postProcess.h"
 
 #include "camera.h"
@@ -19,6 +20,7 @@
 #include "tree.h"
 #include "water.h"
 #include "ground.h"
+#include "arrow.h"
 #include "eventManager.h"
 #include "invisibleBox.h"
 #include "playerUI.h"
@@ -90,6 +92,15 @@ void Tutorial::Init()
 		AddGameObject<Tree>(1)->SetPosition(DataStorage::GetTutorialDataStorage()->TreePos[i]);
 	}
 
+	// 矢印看板
+	int arrowListNum = DataStorage::GetTutorialDataStorage()->ArrowPos.size();
+	for (int i = 0; i < arrowListNum; i++)
+	{
+		Arrow* arrow = AddGameObject<Arrow>(1);
+		arrow->SetPosition(DataStorage::GetTutorialDataStorage()->ArrowPos[i]);
+		arrow->SetRotation(D3DXVECTOR3(0.0f, DataStorage::GetTutorialDataStorage()->ArrowRot[i].y * D3DX_PI / 180.0f, 0.0f));
+	}
+
 	// 水面
 	Water::CreateWave();
 	AddGameObject<Water>(1)->CreateWater(true);
@@ -118,7 +129,7 @@ void Tutorial::Update()
 	// リザルトシーン推移
 	if (m_Fade->GetFadeFinished())
 	{
-		Manager::SetScene<Title>();
+		Manager::SetScene<Game>();
 		GUI::sceneEndFlag = false;
 	}
 }

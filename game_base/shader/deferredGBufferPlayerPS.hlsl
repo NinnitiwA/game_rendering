@@ -17,7 +17,8 @@ void main(in PS_SHADOWMAP_IN In, out PS_DEFERRED_OUT Out)
 	wvp = mul(wvp, Projection);
 
 	float4 color;
-	color = g_Texture.Sample(g_SamplerState, In.TexCoord);
+	if (Param.Color.a > 0.5f) color = g_Texture.Sample(g_SamplerState, In.TexCoord);
+	else color = g_Texture.Sample(g_SamplerState, In.TexCoord) + float4(0.85f, 0.15f, 0.15f, 1.0f) * Param.Color.r;
 	color.a = 1.0f;
 	Out.Albedo = color;
 

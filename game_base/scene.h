@@ -57,7 +57,14 @@ public:
 		{
 			for (GameObject* gameObject : m_GameObject[i])
 			{
-				gameObject->Update();
+				// ゲーム内の動的オブジェクトは更新制限
+				if (i == 1)
+				{
+					gameObject->CalcUpdateFlag();
+					if (gameObject->GetUpdateFlag()) gameObject->Update();
+				}
+				// UIなどの静的オブジェクトは常に更新
+				else gameObject->Update();
 			}
 
 			// オブジェクト削除

@@ -18,7 +18,11 @@ void main(in PS_SHADOWMAP_IN In, out PS_DEFERRED_OUT Out)
 	wvp = mul(wvp, Projection);
 
 	float4 color;
+	// カスタムカラー設定
 	if (Param.Color.a > 0.5f) color.rgb = Param.Color.rgb;
+	// 被ダメージ時のカラー設定
+	else if (Param.Color.a > 0.25f) color.rgb = g_Texture.Sample(g_SamplerState, In.TexCoord).rgb + float3(0.85f, 0.15f, 0.15f) * Param.Color.r;
+	// マテリアルカラー設定
 	else color.rgb = Material.Diffuse.rgb;
 	color.a = 1.0f;
 	Out.Albedo = color;

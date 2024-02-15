@@ -77,11 +77,11 @@ void PointLight::Update()
 	{
 		g_PointLights.PointLight[i].Position += D3DXVECTOR4(m_MoveVector[i], 0.0f);
 
-		if (g_PointLights.PointLight[i].Position.x < -20.0f || g_PointLights.PointLight[i].Position.x > 20.0f)
+		if (g_PointLights.PointLight[i].Position.x < -60.0f || g_PointLights.PointLight[i].Position.x > 60.0f)
 			m_MoveVector[i].x *= -1;
-		if (g_PointLights.PointLight[i].Position.y < 0.0f || g_PointLights.PointLight[i].Position.y > 5.0f)
+		if (g_PointLights.PointLight[i].Position.y < 1.0f || g_PointLights.PointLight[i].Position.y > 9.0f)
 			m_MoveVector[i].y *= -1;
-		if (g_PointLights.PointLight[i].Position.z < -20.0f || g_PointLights.PointLight[i].Position.z > 20.0f)
+		if (g_PointLights.PointLight[i].Position.z < -60.0f || g_PointLights.PointLight[i].Position.z > 60.0f)
 			m_MoveVector[i].z *= -1;
 	}
 

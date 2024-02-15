@@ -30,7 +30,6 @@
 
 #include "debugObject.h"
 #include "animationObject.h"
-#include "debugInstancingObject.h"
 
 
 void Game::Init()
@@ -40,6 +39,7 @@ void Game::Init()
 	GUI::drawGuiFlag = false;
 	GUI::playerControllFlag = true;
 	GUI::drawLocalLightFlag = false;
+	GUI::luminanceValue = 0.825f;
 
 	// システムオブジェクト
 	AddGameObject<Camera>(0);
@@ -64,15 +64,15 @@ void Game::Init()
 
 	// 環境オブジェクト
 	AddGameObject<Sky>(1);
-	//TheLandOfBeginnings::InitEnvironment();
-	//TheCrystalFountainhead::InitEnvironment();
+	TheLandOfBeginnings::InitEnvironment();
+	TheCrystalFountainhead::InitEnvironment();
 	TheSkyIsland::InitEnvironment();
 	Water::CreateWave();
 	AddGameObject<Water>(1)->CreateWater(true);
 
 	// エネミー
-	//TheLandOfBeginnings::InitEnemy();
-	//TheCrystalFountainhead::InitEnemy();
+	TheLandOfBeginnings::InitEnemy();
+	TheCrystalFountainhead::InitEnemy();
 	TheSkyIsland::InitEnemy();
 
 	// デバッグ

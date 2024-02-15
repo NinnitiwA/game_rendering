@@ -22,6 +22,7 @@ private:
 	static Model* m_GroundModel;
 	static Model* m_SnakeHeadModel;
 	static Model* m_SnakeBodyModel;
+	static Model* m_ArrowModel;
 
 	// テクスチャ
 	static ID3D11ShaderResourceView* m_FieldTexture;
@@ -34,6 +35,8 @@ private:
 	static ID3D11ShaderResourceView* m_DashTutorialTexture;
 	static ID3D11ShaderResourceView* m_PressAttackTutorialTexture;
 	static ID3D11ShaderResourceView* m_ChargeAttackTutorialTexture;
+	static ID3D11ShaderResourceView* m_TitleTexture;
+	static ID3D11ShaderResourceView* m_TitleSelectTexture;
 	static ID3D11ShaderResourceView* m_EndTexture;
 	static ID3D11ShaderResourceView* m_DeathTexture;
 	static ID3D11ShaderResourceView* m_KenshouTexture;
@@ -109,6 +112,7 @@ public:
 	static Model* GetGroundModel() { return m_GroundModel; }
 	static Model* GetSnakeHeadModel() { return m_SnakeHeadModel; }
 	static Model* GetSnakeBodyModel() { return m_SnakeBodyModel; }
+	static Model* GetArrowModel() { return m_ArrowModel; }
 
 	static ID3D11ShaderResourceView* const* GetFieldTexture() { return &m_FieldTexture; }
 	static ID3D11ShaderResourceView* const* GetEnvironmentMapTexture() { return &m_EnvironmentMapTexture; }
@@ -120,6 +124,8 @@ public:
 	static ID3D11ShaderResourceView* const* GetDashTutorialTexture() { return &m_DashTutorialTexture; }
 	static ID3D11ShaderResourceView* const* GetPressAttackTutorialTexture() { return &m_PressAttackTutorialTexture; }
 	static ID3D11ShaderResourceView* const* GetChargeAttackTutorialTexture() { return &m_ChargeAttackTutorialTexture; }
+	static ID3D11ShaderResourceView* const* GetTitleTexture() { return &m_TitleTexture; }
+	static ID3D11ShaderResourceView* const* GetTitleSelectTexture() { return &m_TitleSelectTexture; }
 	static ID3D11ShaderResourceView* const* GetEndTexture() { return &m_EndTexture; }
 	static ID3D11ShaderResourceView* const* GetDeathTexture() { return &m_DeathTexture; }
 	static ID3D11ShaderResourceView* const* GetKenshouTexture() { return &m_KenshouTexture; }

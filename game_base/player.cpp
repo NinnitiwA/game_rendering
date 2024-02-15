@@ -6,6 +6,7 @@
 #include "enemy.h"
 #include "rock.h"
 #include "tree.h"
+#include "arrow.h"
 #include "ground.h"
 #include "field.h"
 #include "camera.h"
@@ -25,6 +26,7 @@ void Player::Init()
 	m_Position = D3DXVECTOR3( 0.0f, 6.0f, 0.0f );
 	m_Rotation = D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
 	m_Scale = D3DXVECTOR3( 1.0f, 1.0f, 1.0f );
+	GameObject::SetCenterPosition(m_Position);
 
 
 	// パラメータの初期化
@@ -60,6 +62,7 @@ void Player::Update()
 	Camera* camera = scene->GetGameObject<Camera>();
 	D3DXVECTOR3 oldPosition = m_Position; // 前回の座標
 	D3DXVECTOR3 oldRotation = m_Rotation; // 前回の向き
+	GameObject::SetCenterPosition(m_Position);
 	m_Velocity = D3DXVECTOR3(0.0f, m_Velocity.y, 0.0f);
 	m_PlayerAnim.isWalk = false;
 	m_CanControl = GUI::playerControllFlag;
@@ -541,9 +544,10 @@ void Player::Update()
 
 void Player::Draw()
 {
-	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
-
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetDeferredGBufferVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPlayerPS(), NULL, 0);
 
@@ -567,16 +571,23 @@ void Player::Draw()
 	param.Material = GUI::playerMaterial;
 	Renderer::SetPlayerParameter(param);
 
+	// カラー設定
+	POSTPROCESSPARAMETER postParam{};
+	if(m_Param.isDamaged) postParam.color = D3DXVECTOR4(1.5f, 1.0f, 1.0f, 0.5f);
+	else postParam.color = D3DXVECTOR4(1.5f, 1.0f, 1.0f, 1.0f);
+	Renderer::SetPostProcessParameter(postParam);
 
+	// ポリゴン描画
 	Resource::GetPlayerModel()->Draw(material);
 }
 
 
 void Player::DrawShadowMapping()
 {
-	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
-	
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetShadowMappingVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetShadowMappingPS(), NULL, 0);
 
@@ -584,14 +595,16 @@ void Player::DrawShadowMapping()
 	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
 	Renderer::SetWorldMatrix(&world);
 
+	// ポリゴン描画
 	Resource::GetPlayerModel()->Draw();
 }
 
 void Player::DrawZPrePass()
 {
-	if (Manager::GetScene()->GetSceneName() == TITLE_SCENE) return;
-
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
@@ -605,7 +618,10 @@ void Player::DrawZPrePass()
 
 void Player::DrawReflection()
 {
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
@@ -721,6 +737,24 @@ void Player::AttackCollisionDetection()
 			camera->SetCameraOscillationMode(CO_SMALL_MODE);
 		}
 	}
+	// 矢印看板
+	std::vector<Arrow*> arrows = scene->GetGameObjects<Arrow>();
+	for (Arrow* arrow : arrows)
+	{
+		D3DXVECTOR3 position = arrow->GetPosition();
+		D3DXVECTOR3 scale = arrow->GetScale();
+
+		D3DXVECTOR3 direction = m_Position - position;
+		direction.y = 0.0f;
+		float length = D3DXVec3Length(&direction);
+
+		if (length < scale.x * 1.6f)
+		{
+			arrow->SetDamage(2.0f);
+
+			camera->SetCameraOscillationMode(CO_MEDIUM_MODE);
+		}
+	}
 }
 
 // プレイヤーへのダメージ量をセット
@@ -734,6 +768,9 @@ void Player::SetDamage(float damage)
 	// ダメージ処理
 	m_Param.HitPoint -= damage;
 	m_Param.isDamaged = true;
+	Scene* scene = Manager::GetScene();
+	Camera* camera = scene->GetGameObject<Camera>();
+	camera->SetCameraOscillationMode(CO_MEDIUM_MODE);
 	// ステータスの変動によりカウントリセット
 	PlayerUI::ResetStatusUICount();
 }
@@ -762,9 +799,10 @@ void Player::SetHealHP(float heal)
 void Player::Respawn()
 {
 	// 座標・ステータスを初期化
-	m_Position = m_RespwanPosition + D3DXVECTOR3(0.0f, 7.0f, 0.0f);
+	m_Position = m_RespwanPosition + D3DXVECTOR3(0.0f, 17.0f, 400.0f); //D3DXVECTOR3(0.0f, 7.0f, 00.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, D3DX_PI * 1.0f, 0.0f);
 	m_Param.HitPoint = PLAYER_MAX_HP;
+	GameObject::SetCenterPosition(m_Position);
 
 	// 操作可能
 	m_CanControl = GUI::playerControllFlag = true;

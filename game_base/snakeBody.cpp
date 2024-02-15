@@ -107,12 +107,16 @@ void SnakeBody::Update()
 
 void SnakeBody::Draw()
 {
+	// 被ターゲット時にアウトライン描画
+	if (m_isTarget) DrawOutline();
+
 	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 
 	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetDeferredGBufferVS(), NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
+	if (m_Param.State == DAMAGED_STATE) Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferColoredObjectPS(), NULL, 0);
+	else Renderer::GetDeviceContext()->PSSetShader(Resource::GetDeferredGBufferPS(), NULL, 0);
 
 	// マトリクス設定
 	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
@@ -132,6 +136,11 @@ void SnakeBody::Draw()
 	material.Roughness = 0.5f;
 	material.Metalic = 0.12f;
 	material.TextureEnable = true;
+
+	// カラー設定
+	POSTPROCESSPARAMETER param{};
+	param.color = D3DXVECTOR4(1.5f, 1.0f, 1.0f, 0.5f);
+	Renderer::SetPostProcessParameter(param);
 
 	// ポリゴン描写
 	Resource::GetSnakeBodyModel()->Draw(material);
@@ -156,6 +165,9 @@ void SnakeBody::DrawShadowMapping()
 
 void SnakeBody::DrawZPrePass()
 {
+	// 被ターゲット時にアウトライン描画
+	if (m_isTarget) DrawOutline();
+
 	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
 
@@ -215,6 +227,7 @@ void SnakeBody::EnemyActionDecider()
 			m_Param.State = WALK_STATE;
 			m_Param.AttackFrame = 0;
 			m_Param.WalkFrame = 0;
+			m_Param.DamageFrame = 0;
 		}
 
 		// 攻撃判定前に攻撃方向ベクトルを得る
@@ -264,7 +277,11 @@ void SnakeBody::EnemyActionDecider()
 			m_Scale = DataStorage::GetEnemyFieldDataStorage()->WalkAnimScale[m_Param.WalkFrame];
 			m_Param.WalkFrame++;
 			// アニメーションフレームカウントリセット
-			if (m_Param.WalkFrame >= ENEMY_MAX_WALK_FRAME) m_Param.WalkFrame = 0;
+			if (m_Param.WalkFrame >= ENEMY_MAX_WALK_FRAME)
+			{
+				m_Param.WalkFrame = 0;
+				m_Param.DamageFrame = 0;
+			}
 		}
 
 	}
