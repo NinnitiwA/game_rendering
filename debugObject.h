@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// デバッグ用オブジェクト
 class DebugObject : public GameObject
 {
 private:

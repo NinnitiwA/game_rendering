@@ -8,6 +8,7 @@ enum GROUND_TYPE
 	FLOATING_TYPE,  // 浮遊
 };
 
+// 地面オブジェクト用クラス
 class Ground : public GameObject
 {
 private:

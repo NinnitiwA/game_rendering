@@ -24,9 +24,10 @@ void main(in VS_IN In, out PS_SHADOWMAP_IN Out)
 
 	Out.WorldPosition = mul(In.Position, World);
 
+	// ライトビュースクリーン空間座標を計算
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		Out.LightViewPosition[i] = mul(In.Position, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		Out.LightViewPosition[i] = mul(In.Position, lightwvp);
 	}
 }

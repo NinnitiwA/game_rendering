@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// 木オブジェクト用クラス
 class Tree : public GameObject
 {
 private:

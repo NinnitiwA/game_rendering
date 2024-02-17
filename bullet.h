@@ -4,8 +4,6 @@
 class Bullet : public GameObject
 {
 private:
-	//class Audio* m_AttackSE;
-
 	D3DXVECTOR3    m_Velocity; // 移動速度
 	int            m_frame;    // オブジェクト削除用フレーム
 

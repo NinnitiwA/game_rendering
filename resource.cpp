@@ -46,8 +46,6 @@ ID3D11VertexShader*	 Resource::m_ColorVS               = NULL;
 ID3D11PixelShader*	 Resource::m_ColorPS               = NULL;
 ID3D11VertexShader*	 Resource::m_UnlitTextureVS        = NULL;
 ID3D11PixelShader*	 Resource::m_UnlitTexturePS        = NULL;
-ID3D11VertexShader*	 Resource::m_ShadowMappingVS       = NULL;
-ID3D11PixelShader*	 Resource::m_ShadowMappingPS       = NULL;
 ID3D11VertexShader*	 Resource::m_DeferredGBufferVS     = NULL;
 ID3D11PixelShader*	 Resource::m_DeferredGBufferPS     = NULL;
 ID3D11PixelShader*	 Resource::m_DeferredGBufferPlayerPS        = NULL;
@@ -165,8 +163,6 @@ void Resource::Init()
 	Renderer::CreatePixelShader(&m_ColorPS, "shader\\colorPS.cso");
 	Renderer::CreateVertexShader(&m_UnlitTextureVS, &m_VertexLayout, "shader\\unlitTextureVS.cso");
 	Renderer::CreatePixelShader(&m_UnlitTexturePS, "shader\\unlitTexturePS.cso");
-	Renderer::CreateVertexShader(&m_ShadowMappingVS, &m_VertexLayout, "shader\\shadowMappingVS.cso");
-	Renderer::CreatePixelShader(&m_ShadowMappingPS, "shader\\shadowMappingPS.cso");
 	Renderer::CreateVertexShader(&m_DeferredGBufferVS, &m_VertexLayout, "shader\\deferredGBufferVS.cso");
 	Renderer::CreatePixelShader(&m_DeferredGBufferPS, "shader\\deferredGBufferPS.cso");
 	Renderer::CreatePixelShader(&m_DeferredGBufferPlayerPS, "shader\\deferredGBufferPlayerPS.cso");

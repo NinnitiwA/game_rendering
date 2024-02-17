@@ -9,7 +9,6 @@ private:
 	int         m_Number;           // “·‘Ì‚Ì‡”Ô
 	SNAKEPARAMETER m_Param;
 
-	class Audio* m_AttackSE;        // ƒTƒEƒ“ƒh
 public:
 	void SetPreSnakePosition(D3DXVECTOR3 Position) { m_PreSnakePosition = Position; }
 	void SetSnakeBodyNumber(int num) { m_Number = num; }

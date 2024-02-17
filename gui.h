@@ -1,6 +1,7 @@
 #pragma once
 #include "stl.h"
 #include "enemyStone.h"
+
 struct FOG;
 
 enum PROFILING_DIVISION

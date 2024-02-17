@@ -14,7 +14,6 @@ private:
 	SNAKEPARAMETER m_Param;
 
 	float        m_MoveSpeed; // 移動速度
-	class Audio* m_AttackSE;  // サウンド
 
 public:
 	// 胴体配列を取得

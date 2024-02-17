@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// 物理ベースレンダリングオブジェクトデバッグ用オブジェクト
 class PBRObject : public GameObject
 {
 private:

@@ -1,7 +1,7 @@
 #pragma once
 #include "instancingObject.h"
 
-
+// デバッグ用インスタンシングオブジェクト
 class DebugInstancingObject : public InstancingObject
 {
 private:

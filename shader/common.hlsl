@@ -36,15 +36,6 @@ struct PS_SHADOWMAP_IN
 	float2 TexCoord			 : TEXCOORD0;
 };
 
-struct VS_OUTPUT
-{
-	float4 Pos : SV_POSITION;
-	float2 TC0 : TEXCOORD0;
-	float2 TC1 : TEXCOORD1;
-	float2 TC2 : TEXCOORD2;
-	float2 TC3 : TEXCOORD3;
-};
-
 struct PS_DEFERRED_OUT
 {
 	float4 Albedo     : SV_TARGET0; // rgb : アルベド  
@@ -215,9 +206,9 @@ cbuffer FogBuffer : register(b9)
 }
 
 
-cbuffer LightViewProjectionCropBuffer : register(b10)
+cbuffer LightViewProjectionBuffer : register(b10)
 {
-	matrix LightVPC[3];
+	matrix LightVP[3];
 }
 
 
@@ -253,9 +244,7 @@ cbuffer WaveBuffer : register(b13)
 
 
 
-// --------------------------------------------------
-// 関数
-// --------------------------------------------------
+// 関数------------------------------------------------------------------------
 
 // フレネル反射の計算
 float3 CalcFresnelSchlick(float u, float f0, float f90) 

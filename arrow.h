@@ -7,8 +7,6 @@ class Arrow : public GameObject
 private:
 	float m_HitPoint; // ‘Ï‹v’l
 
-	//class Audio* m_BreakSE;
-
 public:
 	void SetDamage(float damage) { m_HitPoint -= damage; }
 

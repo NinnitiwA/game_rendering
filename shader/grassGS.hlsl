@@ -33,8 +33,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 裏面用情報取得
@@ -55,8 +55,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 裏面用情報取得
@@ -79,8 +79,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 裏面用情報取得
@@ -105,8 +105,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 頂点生成
@@ -122,8 +122,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 頂点生成
@@ -139,8 +139,8 @@ void main(
 
 	for (int i = 0; i < 3; i++)
 	{
-		matrix lightwvpc = mul(World, LightVPC[i]);
-		element.LightViewPosition[i] = mul(ownPos, lightwvpc);
+		matrix lightwvp = mul(World, LightVP[i]);
+		element.LightViewPosition[i] = mul(ownPos, lightwvp);
 	}
 
 	// 頂点生成

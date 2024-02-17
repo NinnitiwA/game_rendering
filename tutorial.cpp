@@ -9,6 +9,7 @@
 
 #include "camera.h"
 #include "player.h"
+#include "enemy.h"
 #include "field.h"
 #include "directionalLight.h"
 #include "SpotLight.h"

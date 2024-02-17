@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// 検証シーンフィールド用クラス
 class Field : public GameObject
 {
 private:

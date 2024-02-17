@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// 水面オブジェクト用クラス
 class Water : public GameObject
 {
 private:

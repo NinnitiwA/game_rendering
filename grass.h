@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// 草原オブジェクト用クラス
 class Grass : public GameObject
 {
 private:

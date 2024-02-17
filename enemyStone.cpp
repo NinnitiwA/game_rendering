@@ -242,9 +242,12 @@ void EnemyStone::Draw()
 
 void EnemyStone::DrawShadowMapping()
 {
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
-	Renderer::GetDeviceContext()->VSSetShader(Resource::GetShadowMappingVS(), NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(Resource::GetShadowMappingPS(), NULL, 0);
+
+	// シェーダ設定
+	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
+	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
 	// マトリクス設定
 	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);
@@ -259,7 +262,10 @@ void EnemyStone::DrawZPrePass()
 	// 被ターゲット時にアウトライン描画
 	if (m_isTarget) DrawOutline();
 
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
@@ -273,7 +279,10 @@ void EnemyStone::DrawZPrePass()
 
 void EnemyStone::DrawReflection()
 {
+	// 入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
+
+	// シェーダ設定
 	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
 	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
+// スカイドーム用クラス
 class Sky : public GameObject
 {
 private:

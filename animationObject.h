@@ -3,6 +3,7 @@
 
 #define ANIM_END_FRAME 20
 
+// アニメーションデバッグウィンドウ用オブジェクト
 class AnimationObject : public GameObject
 {
 private:

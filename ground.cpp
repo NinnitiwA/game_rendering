@@ -59,8 +59,8 @@ void Ground::DrawShadowMapping()
 {
 	// シェーダ設定
 	Renderer::GetDeviceContext()->IASetInputLayout(Resource::GetVertexLayout());
-	Renderer::GetDeviceContext()->VSSetShader(Resource::GetShadowMappingVS(), NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(Resource::GetShadowMappingPS(), NULL, 0);
+	Renderer::GetDeviceContext()->VSSetShader(Resource::GetUnlitTextureVS(), NULL, 0);
+	Renderer::GetDeviceContext()->PSSetShader(Resource::GetUnlitTexturePS(), NULL, 0);
 
 	// マトリクス設定
 	D3DXMATRIX world = Renderer::GetWorldMatrix(m_Scale, m_Rotation, m_Position);

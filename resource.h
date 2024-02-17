@@ -52,8 +52,6 @@ private:
 	static ID3D11PixelShader*	m_ColorPS;
 	static ID3D11VertexShader*	m_UnlitTextureVS;
 	static ID3D11PixelShader*	m_UnlitTexturePS;
-	static ID3D11VertexShader*	m_ShadowMappingVS;
-	static ID3D11PixelShader*	m_ShadowMappingPS;
 	static ID3D11VertexShader*	m_DeferredGBufferVS;
 	static ID3D11PixelShader*	m_DeferredGBufferPS;
 	static ID3D11PixelShader*	m_DeferredGBufferPlayerPS;
@@ -154,8 +152,6 @@ public:
 	static ID3D11PixelShader* GetColorPS() { return m_ColorPS; }
 	static ID3D11VertexShader* GetUnlitTextureVS() { return m_UnlitTextureVS; }
 	static ID3D11PixelShader* GetUnlitTexturePS() { return m_UnlitTexturePS; }
-	static ID3D11VertexShader* GetShadowMappingVS() { return m_ShadowMappingVS; }
-	static ID3D11PixelShader* GetShadowMappingPS() { return m_ShadowMappingPS; }
 	static ID3D11VertexShader* GetDeferredGBufferVS() { return m_DeferredGBufferVS; }
 	static ID3D11PixelShader* GetDeferredGBufferPS() { return m_DeferredGBufferPS; }
 	static ID3D11PixelShader* GetDeferredGBufferPlayerPS() { return m_DeferredGBufferPlayerPS; }
